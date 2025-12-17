@@ -1,1307 +1,382 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anas Atta - Laravel Developer & CS Student</title>
-    <style>
-        /* Import Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-        /* CSS Variables */
-        :root {
-            --primary-color: #14b8a6;
-            --secondary-color: #0ea5e9;
-            --accent-color: #06b6d4;
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-tertiary: #334155;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --border-color: #475569;
-            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            --gradient-secondary: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(71, 85, 105, 0.3);
-        }
-
-        .navbar.scrolled {
-            background: rgba(15, 23, 42, 0.98);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--primary-color);
-            background: rgba(20, 184, 166, 0.1);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link.active::after {
-            width: 80%;
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--gradient-secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%2314b8a6" stop-opacity="0.1"/><stop offset="100%" stop-color="%2314b8a6" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
-            background-size: cover;
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero-tagline {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            min-height: 2rem;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background: var(--primary-color);
-            animation: blink 1s infinite;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.6s both;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-            color: white;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 5rem 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .about-list {
-            list-style: none;
-        }
-
-        .about-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .about-list li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-size: 0.8rem;
-        }
-
-        .about-image {
-            background: var(--gradient-secondary);
-            border-radius: 1rem;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .about-image-placeholder {
-            width: 200px;
-            height: 200px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
-
-        /* Experience Section */
-        .experience-card {
-            background: var(--bg-secondary);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .experience-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .experience-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .experience-company {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-duration {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .experience-list {
-            list-style: none;
-        }
-
-        .experience-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .experience-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--bg-secondary);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .skill-category-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-category-icon {
-            font-size: 1.5rem;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            transform: scale(1.05);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-secondary);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .project-image {
-            height: 200px;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            background: rgba(20, 184, 166, 0.1);
-            color: var(--primary-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.8rem;
-            border: 1px solid rgba(20, 184, 166, 0.3);
-        }
-
-        .project-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-button {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            background: transparent;
-        }
-
-        .project-button:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Resume Section */
-        .resume-content {
-            text-align: center;
-            background: var(--bg-secondary);
-            border-radius: 1rem;
-            padding: 3rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-        }
-
-        .resume-icon {
-            font-size: 4rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .resume-text {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .resume-button {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .resume-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-            color: white;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-        }
-        .contact-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    align-items: flex-start; /* Align text left */
-    background: var(--bg-secondary);
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border-color);
-    gap: 1.5rem; /* Spacing between contact items */
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
-
-.contact-icon {
-    font-size: 1.5rem;
-    line-height: 1;
-}
-
-.contact-item a {
-    text-decoration: underline;
-    color: inherit;
-}
-.contact-columns {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.contact-column {
-    flex: 1;
-    min-width: 250px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
-
-.contact-icon {
-    font-size: 1.5rem;
-    line-height: 1;
-}
-
-.contact-item a {
-    text-decoration: underline;
-    color: inherit;
-}
-
-
-
-       
-
-      
-        
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 0.5rem;
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            font-family: inherit;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-button {
-            width: 100%;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .form-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--bg-secondary);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-content {
-            color: var(--text-muted);
-        }
-
-        .footer-content p {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-           
-    .contact-columns {
-        flex-direction: column;
-    
-}
-
-            .nav-menu {
-                position: fixed;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--bg-secondary);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                border-top: 1px solid var(--border-color);
-            }
-
-            .nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .mobile-menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .mobile-menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .mobile-menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .skills-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .experience-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .section {
-                padding: 3rem 0;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-        }
-    </style>
+    <title>Dev Portfolio | 404: Sleep Not Found</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
+
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">Anas Atta</a>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#resume" class="nav-link">Resume</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <nav class="navbar">
+        <div class="logo">&lt;Dev/&gt;</div>
+        <ul class="nav-links">
+            <li><a href="#about">About.init()</a></li>
+            <li><a href="#experience">Exp.log()</a></li>
+            <li><a href="#skills">Skills.array[]</a></li>
+            <li><a href="#projects">Projects.render()</a></li>
+            <li><a href="#contact">Contact.send()</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-    <div class="hero-content">
-        <h1 class="hero-title">Hi, I'm Anas Atta</h1>
-        <p class="hero-subtitle">Software Engineer | Full Stack Developer | 1+ Year Experience</p>
-        <div class="hero-tagline" id="typing-text">
-            <span id="typed-text"></span>
-            <span class="typing-cursor"></span>
+    <section id="hero" class="hero-section">
+        <div class="floating-code-bg" id="code-bg"></div>
+        <div class="hero-content">
+            <h1 class="glitch-text" data-text="Anas Atta">Anas Atta</h1>
+            <div class="typewriter">
+                <span id="typing-text"></span><span class="cursor">|</span>
+            </div>
+            <p class="hero-tagline">Turning coffee ☕ into code since console.log('Hello World')</p>
+            <a href="#contact" class="cta-button">
+                <span class="btn-text">Hire Me</span>
+                <span class="btn-glitch"></span>
+            </a>
         </div>
-        <a href="#resume" class="cta-button">View Resume</a>
-    </div>
-</section>
+        <div class="scroll-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
-    <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <p class="section-subtitle">Who I Am</p>
-        <div class="about-content">
-            <div>
-                <p class="about-text">
-                    I am a passionate software engineer with hands-on experience in building modern web and mobile applications. 
-                    I specialize in creating responsive, scalable, and user-focused solutions using the latest technologies.
-                </p>
-                <ul class="about-list">
-                    <li>Currently exploring advanced React and MERN stack</li>
-                    <li>Experience in web and mobile app development</li>
-                    <li>Strong grasp of core CS concepts and design patterns</li>
-                    <li>Focus on clean, maintainable code and performance</li>
-                    <li>Interested in backend, frontend, and cross-platform apps</li>
-                </ul>
-            </div>
-            <div class="about-image">
-                <div class="about-image-placeholder">👨‍💻</div>
-                <p style="color: var(--text-secondary);">Creative Developer</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-    <div class="container">
-        <h2 class="section-title">Work Experience</h2>
-        <p class="section-subtitle">My Professional Journey</p>
-        <div class="experience-card">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-title">Laravel Developer</h3>
-                    <p class="experience-company">Infinity Hub</p>
-                </div>
-                <div class="experience-duration">Aug 2024 - Feb 2025</div>
-            </div>
-            <ul class="experience-list">
-                <li>Developed and maintained backend services using Laravel</li>
-                <li>Built APIs and integrated third-party services</li>
-                <li>Collaborated with frontend and mobile teams for full-stack delivery</li>
-                <li>Improved performance with efficient database queries</li>
-                <li>Followed version control and CI/CD practices</li>
-                <li>Applied SOLID principles and OOP best practices</li>
-            </ul>
-        </div>
-    </div>
-</section>
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-    <div class="container">
-        <h2 class="section-title">Skills</h2>
-        <p class="section-subtitle">Technologies I Work With</p>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3 class="skill-category-title">
-                    <span class="skill-category-icon">🎨</span>
-                    Frontend
-                </h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React.js</span>
-                    <span class="skill-tag">Bootstrap</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3 class="skill-category-title">
-                    <span class="skill-category-icon">⚙️</span>
-                    Backend
-                </h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">Laravel</span>
-                    <span class="skill-tag">RESTful APIs</span>
-                    <span class="skill-tag">MVC Architecture</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3 class="skill-category-title">
-                    <span class="skill-category-icon">📱</span>
-                    Mobile Development
-                </h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">React Native</span>
-                    <span class="skill-tag">Expo</span>
-                    <span class="skill-tag">Supabase</span>
-                    <span class="skill-tag">Firebase</span>
-                    <span class="skill-tag">Cross-platform Apps</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3 class="skill-category-title">
-                    <span class="skill-category-icon">🗄️</span>
-                    Database
-                </h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">Firebase</span>
-                    <span class="skill-tag">Database Design</span>
-                    <span class="skill-tag">Query Optimization</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3 class="skill-category-title">
-                    <span class="skill-category-icon">🛠️</span>
-                    Tools
-                </h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">GitHub</span>
-                    <span class="skill-tag">VS Code</span>
-                    <span class="skill-tag">Composer</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
+    <section id="about" class="section about-section">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <p class="section-subtitle">Some of My Recent Work</p>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">🛒</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Pharmacy E-commerce Platform with integrated Web Based ERP</h3>
-                        <p class="project-description">
-                           A role-based system managing inventory, sales, and suppliers built with Laravel 11. This is my final year project.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Bootstrap</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://medisehet.store" target="_blank" class="project-button">Live Demo</a>
-                        </div>
+            <h2 class="section-title"><span class="hash">#</span> About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="intro">Hello! I'm a Web Developer & CS Student.</p>
+                    <p class="joke">I debug faster than I write code (sometimes).</p>
+                    <p>
+                        Passionate about building interactive web experiences. When I'm not coding,
+                        I'm probably staring at a syntax error on line 42 wondering why my life is like this.
+                    </p>
+                    <div class="emoji-reactions">
+                        <span class="emoji" data-tooltip="Coding Mode">👨‍💻</span>
+                        <span class="emoji" data-tooltip="Bug Hunting">🐛</span>
+                        <span class="emoji" data-tooltip="Deployment Day">🚀</span>
+                        <span class="emoji" data-tooltip="Coffee Fuel">☕</span>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image">📝</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Expense Tracker</h3>
-                        <p class="project-description">
-                           Cross-platform mobile app for real-time expense tracking with categories, reports, and budget management.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">SupaBase</span>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://github.com/Anasatta048/Expense-Tracker-React-Native" class="project-button">View Code</a>
-                         
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">📊</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Pharmacy Managment System</h3>
-                        <p class="project-description">
-                           Console application using data structures for pharmacy operations, inventory management, and sales tracking.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">DSA</span>
-                            <span class="tech-tag">File Handling</span>
-                           
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://github.com/Anasatta048/Pharmacy-Managment-System-C-" class="project-button">View Code</a>
-                        </div>
+                <div class="about-visual">
+                    <div class="profile-img-container">
+                        <img src="assets/profile1.jpeg" alt="Anas Atta" class="profile-img">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Resume Section -->
-    <section id="resume" class="section">
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section">
         <div class="container">
-            <h2 class="section-title">Resume</h2>
-            <p class="section-subtitle">Download My CV</p>
-            <div class="resume-content">
-                <div class="resume-icon">📄</div>
-                <p class="resume-text">
-                    Download my complete resume to learn more about my education, experience, 
-                    and technical skills in detail.
-                </p>
-                <a href="./assets/Anas Atta Resume.pdf" class="resume-button" download>Download Resume</a>
+            <h2 class="section-title"><span class="hash">#</span> Experience</h2>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Full Stack Developer</h3>
+                            <span class="company">Blue Horn Technologies</span>
+                            <span class="duration">Aug 2025 - Present</span>
+                        </div>
+                        <ul class="timeline-list">
+                            <li>Developing scalable full-stack applications using modern web technologies</li>
+                            <li>Collaborating with design and product teams to deliver high-quality user experiences
+                            </li>
+                            <li>Optimizing application performance and ensuring code quality</li>
+                            <li>Mentoring junior developers and participating in code reviews</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Laravel Developer</h3>
+                            <span class="company">Infinity Hub</span>
+                            <span class="duration">Aug 2024 - Feb 2025</span>
+                        </div>
+                        <ul class="timeline-list">
+                            <li>Developed and maintained backend services using Laravel</li>
+                            <li>Built APIs and integrated third-party services</li>
+                            <li>Collaborated with frontend and mobile teams for full-stack delivery</li>
+                            <li>Improved performance with efficient database queries</li>
+                            <li>Followed version control and CI/CD practices</li>
+                            <li>Applied SOLID principles and OOP best practices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h2 class="section-title"><span class="hash">#</span> Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-tooltip="99% logic, 1% semicolons">
+                    <div class="skill-icon">JS</div>
+                    <h3>JavaScript</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-tooltip="Making things pretty… accidentally breaking layouts">
+                    <div class="skill-icon">CSS</div>
+                    <h3>CSS3</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-tooltip="It's not a programming language, fight me">
+                    <div class="skill-icon">HTML</div>
+                    <h3>HTML5</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-tooltip="I know how to center a div (mostly)">
+                    <div class="skill-icon">R</div>
+                    <h3>React</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-tooltip="Backend magic happening here">
+                    <div class="skill-icon">N</div>
+                    <h3>Node.js</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-tooltip="Where data goes to rest">
+                    <div class="skill-icon">SQL</div>
+                    <h3>SQL</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-tooltip="The PHP Framework for Web Artisans">
+                    <div class="skill-icon">L</div>
+                    <h3>Laravel</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 95%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <h2 class="section-title"><span class="hash">#</span> Projects</h2>
+
+            <!-- Personal Projects -->
+            <h3 class="subsection-title">Personal Projects</h3>
+            <div class="projects-grid">
+                <!-- Expense Tracker -->
+                <div class="project-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Expense Tracker</h3>
+                            <div class="tech-stack-front">
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">Supabase</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Expense Tracker</h3>
+                            <p>Cross-platform mobile app for real-time expense tracking, budget management, and
+                                category-wise analysis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pharmacy Console App -->
+                <div class="project-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Pharmacy Console</h3>
+                            <div class="tech-stack-front">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">DSA</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Pharmacy Console</h3>
+                            <p>Efficient console application utilizing advanced data structures (Linked Lists, Trees)
+                                for pharmacy inventory and sales operations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POS in Laravel -->
+                <div class="project-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>POS System</h3>
+                            <div class="tech-stack-front">
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>POS System</h3>
+                            <p>A comprehensive Point of Sale system featuring barcode scanning, receipt generation, and
+                                real-time stock updates for retail businesses.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FYP -->
+            <h3 class="subsection-title">Final Year Project (FYP)</h3>
+            <div class="projects-grid">
+                <!-- Pharmacy E-commerce -->
+                <div class="project-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Pharmacy E-commerce</h3>
+                            <div class="tech-stack-front">
+                                <span class="tech-tag">Laravel</span>
+                                <span class="tech-tag">Multi-vendor</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Pharmacy E-commerce</h3>
+                            <p>A multivendor marketplace for pharmacies to list products. Includes ERP modules for
+                                suppliers, purchasing, and an integrated POS system.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real World Projects -->
+            <h3 class="subsection-title">Real World Projects</h3>
+            <div class="projects-grid">
+                <!-- Accounting App -->
+                <div class="project-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Accounting App</h3>
+                            <div class="tech-stack-front">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>Accounting App</h3>
+                            <p>Personal accounting solution to manage tasks, expenses, balances, and projects. Features
+                                comprehensive stock management for purchases and sales.</p>
+                            <a href="https://accounting-app-repo-l65v.vercel.app/login" target="_blank"
+                                class="project-link">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B2B CRM Uniguide -->
+                <div class="project-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>B2B CRM Uniguide</h3>
+                            <div class="tech-stack-front">
+                                <span class="tech-tag">Full Stack</span>
+                                <span class="tech-tag">B2B</span>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3>B2B CRM Uniguide</h3>
+                            <p>Developed at Blue Horn Technologies. A robust CRM platform tailored for B2B consulting,
+                                streamlining client management and business workflows.</p>
+                            <a href="https://b2bcrmuniguide.verbalcrafts.com/" target="_blank" class="project-link">Live
+                                Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bug-feature">
+                <p>Bug not found… must be a feature.</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-   <section id="contact" class="section">
-    <div class="container">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">Let's Connect and Build Something Amazing</p>
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Contact Information</h3>
-                <div class="contact-columns">
-                    <!-- Column 1 -->
-                    <div class="contact-column">
-                        <div class="contact-item">
-                            <div class="contact-icon">📧</div>
-                            <div>
-                                <h4 style="color: var(--text-primary); margin-bottom: 0.25rem;">Email</h4>
-                                <p><a href="mailto:anasatta048@gmail.com">anasatta048@gmail.com</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">💼</div>
-                            <div>
-                                <h4 style="color: var(--text-primary); margin-bottom: 0.25rem;">LinkedIn</h4>
-                                <p><a href="https://www.linkedin.com/in/anas-atta-036773279" target="_blank">linkedin.com/in/anasatta</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">🐙</div>
-                            <div>
-                                <h4 style="color: var(--text-primary); margin-bottom: 0.25rem;">GitHub</h4>
-                                <p><a href="https://github.com/Anasatta048" target="_blank">github.com/anasatta</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Column 2 -->
-                    <div class="contact-column">
-                        <div class="contact-item">
-                            <div class="contact-icon">📱</div>
-                            <div>
-                                <h4 style="color: var(--text-primary); margin-bottom: 0.25rem;">WhatsApp</h4>
-                                <p><a href="https://wa.me/923322665959" target="_blank">+92 332 2665959</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">📸</div>
-                            <div>
-                                <h4 style="color: var(--text-primary); margin-bottom: 0.25rem;">Instagram</h4>
-                                <p><a href="https://www.instagram.com/1anasss/" target="_blank">Anas Sheikh</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">📘</div>
-                            <div>
-                                <h4 style="color: var(--text-primary); margin-bottom: 0.25rem;">Facebook</h4>
-                                <p><a href="https://www.facebook.com/sheikh.anas.56863/" target="_blank">Anas Sheikh</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
->
-
-
-
-    <!-- Footer -->
-    <footer class="footer">
+    <section id="contact" class="section contact-section">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Anas Atta. All rights reserved.</p>
-                <p>Designed by Anas Atta</p>
-            </div>
+            <h2 class="section-title"><span class="hash">#</span> Contact</h2>
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/mvgenogy" method="POST">
+                <div class="form-group">
+                    <label for="name">const name =</label>
+                    <input type="text" id="name" name="name" placeholder="'Your Name'" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">const email =</label>
+                    <input type="email" id="email" name="email" placeholder="'Your email (I promise not to spam… much)'"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="message">function message() {</label>
+                    <textarea id="message" name="message" placeholder="// Write your message here..."
+                        required></textarea>
+                    <span class="closing-brace">}</span>
+                </div>
+                <button type="submit" class="submit-btn">
+                    console.log("Send Message");
+                </button>
+            </form>
         </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Anas Atta. Built with 💻 and too much ☕.</p>
+        <div id="secret-trigger" style="opacity: 0.1; cursor: pointer;">π</div>
     </footer>
 
-    <script>
-        // Typing Animation
-        const typingText = document.getElementById('typed-text');
-        const phrases = [
-            'Passionate about building innovative web solutions.',
-            'Creating scalable applications with Laravel.',
-            'Turning ideas into reality through code.',
-            'Building the future, one line at a time.'
-        ];
-        
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        
-        function typeWriter() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            
-            let typeSpeed = isDeleting ? 50 : 100;
-            
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typeSpeed = 500;
-            }
-            
-            setTimeout(typeWriter, typeSpeed);
-        }
-        
-        // Start typing animation
-        setTimeout(typeWriter, 1000);
+    <div id="secret-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>You found the secret dev mode 😎</h2>
+            <p>Here's a cookie 🍪 (virtual, sorry).</p>
+        </div>
+    </div>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+    <!-- Gamification HUD -->
+    <div id="gamification-hud">
+        <div class="interest-container">
+            <div class="interest-label">Recruiter Interest Level 📈</div>
+            <div class="interest-bar">
+                <div class="interest-fill" id="interest-fill"></div>
+            </div>
+        </div>
+        <div class="avatar-wrapper" id="avatar-wrapper">
+            <div class="avatar-container">
+                <img src="assets/profile1.jpeg" alt="Dev Avatar" id="game-avatar">
+                <div class="avatar-mood" id="avatar-mood">😐</div>
+                <div class="sunglasses" id="sunglasses">🕶️</div>
+            </div>
+            <div class="speech-bubble" id="speech-bubble">Welcome! Scroll to boost interest!</div>
+        </div>
+    </div>
 
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Smooth scroll and active link highlighting
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.section, .hero');
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                targetSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                navMenu.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-            });
-        });
-
-        // Highlight active section on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (window.scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Section reveal animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        sections.forEach(section => {
-            if (section.classList.contains('section')) {
-                observer.observe(section);
-            }
-        });
-
-        // Contact form validation
-        const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            // Basic validation
-            if (!name || !email || !message) {
-                alert('Please fill in all fields.');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            // Success message
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            contactForm.reset();
-        });
-
-        // Add floating animation to skill tags
-        const skillTags = document.querySelectorAll('.skill-tag');
-        skillTags.forEach((tag, index) => {
-            tag.style.animationDelay = `${index * 0.1}s`;
-            tag.style.animation = 'float 3s ease-in-out infinite';
-        });
-
-        // Add hover effect to project cards
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(-5px) scale(1)';
-            });
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
+
 </html>
