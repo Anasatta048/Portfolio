@@ -772,32 +772,6 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .about-content {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-    cursor: pointer;
-  }
-
-  .hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: var(--primary-color);
-    margin: 5px 0;
-  }
-
-  .glitch-text {
-    font-size: 2.5rem;
-  }
-}
 
 .renovation-tape {
   position: absolute;
@@ -949,19 +923,6 @@ body {
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  .experience-timeline::before {
-    left: 20px;
-  }
-
-  .timeline-item {
-    padding-left: 3rem;
-  }
-
-  .timeline-dot {
-    left: 14px;
-  }
-}
 
 /* Updated Project Card Styles */
 .subsection-title {
@@ -1308,4 +1269,229 @@ body {
 
 .shake {
   animation: shakeHead 0.5s ease-in-out;
+}
+
+/* --- Responsive Design --- */
+
+/* Tablets & Small Laptops */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .foundation-texture {
+    display: none;
+  }
+
+  .section-title {
+    font-size: 2.8rem;
+  }
+}
+
+/* Phones */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--primary-color);
+    margin: 6px 0;
+    transition: all 0.3s;
+  }
+
+  /* Hamburger Animation */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -7px);
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+    z-index: 1000;
+    border-left: 1px solid var(--primary-color);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+
+  .section {
+    padding: 6rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Hero Section */
+  .construction-text {
+    font-size: 3rem;
+    letter-spacing: -1px;
+  }
+
+  .typewriter {
+    font-size: 1.1rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    width: 90%;
+  }
+
+  .warning-strip {
+    font-size: 0.7rem;
+    padding: 0.3rem;
+  }
+
+  /* About Section */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-visual-panel {
+    order: -1;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .about-text-panel {
+    padding: 2rem;
+  }
+
+  .about-text-panel h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Skills & Projects */
+  .skills-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .project-card {
+    min-height: auto;
+  }
+
+  .project-room-content h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Experience Timeline */
+  .experience-timeline {
+    padding: 2rem 1.5rem;
+  }
+
+  .timeline-item {
+    padding-left: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .timeline-item::before {
+    display: none;
+  }
+
+  .timeline-dot {
+    left: -7px;
+  }
+
+  .timeline-content {
+    padding: 1.5rem;
+  }
+
+  .timeline-header h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Contact Form */
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .control-panel {
+    padding: 1rem;
+  }
+
+  /* HUD */
+  #system-hud {
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: rgba(10, 10, 10, 0.9);
+    border-top: 1px solid var(--primary-color);
+  }
+
+  .hud-item {
+    font-size: 0.6rem;
+  }
+
+  #gamification-hud {
+    bottom: 60px;
+    right: 15px;
+  }
+
+  .interest-bar {
+    width: 100px;
+  }
+
+  .avatar-container {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .construction-text {
+    font-size: 2.2rem;
+  }
+
+  .hero-actions .construction-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
 }
