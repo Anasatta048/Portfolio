@@ -302,9 +302,8 @@
         path = u.pathname.replace(/\/$/, "");
       } catch (e) {}
     }
-    const favicon = p.url
-      ? `<img class="favicon" src="https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=32" alt="" width="14" height="14" loading="lazy" onerror="this.style.display='none'">`
-      : icon(p.icon);
+    // project icon instead of a remote favicon: zero extra requests, no 404s
+    const favicon = icon(p.icon);
     const right = p.url
       ? `<span class="live-badge"><span class="live-dot"></span>Live</span>`
       : `<span class="badge">${icon("lock")}Private</span>`;

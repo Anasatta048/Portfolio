@@ -85,9 +85,9 @@ To use your own image instead, drop it in `assets/screens/` and add `"slug": "as
 
 The form is in `index.html` (`#contact-form`). If `data-endpoint` is empty, submitting opens the visitor's mail client with the message pre-filled. To deliver messages with no mail client involved, set `data-endpoint="https://formspree.io/f/xxxx"`.
 
-## After deploying
+## Deployment
 
-Replace `https://anasatta048.github.io/portfolio/` with your real URL in the `canonical`, `og:*`, `twitter:image` and JSON-LD tags in `index.html`.
+The site is live on GitHub Pages at **https://anasatta048.github.io/Portfolio/**. It deploys from `main` (`/` root), and every push to `main` goes live within a minute or two. If you move it to a custom domain, update the `canonical`, `og:*`, `twitter:image` and JSON-LD URLs in `index.html`.
 
 ---
 
