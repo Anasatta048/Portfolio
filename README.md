@@ -61,6 +61,14 @@ node capture.js talk-to-trader gmb-manager
 
 The first command captures every project; the second captures only the slugs you name. The script opens each URL at **1440px** width and scrolls the page so lazy content loads. It saves a full-page shot to `assets/screens/<slug>.webp`, or `.png` if `sharp` isn't installed, and regenerates `js/screens.js`.
 
+Optional per-project fields in `tools/projects.json`:
+
+- `"capture": "https://staging…/page"` takes the screenshot from a different page, while the site keeps showing and linking the public `url`. Florenza uses this.
+- `"wait": 7000` waits longer (ms) for preloaders or intro animations.
+- `"forceReveal": true` un-hides scroll-reveal sections that stay invisible in headless browsers. BCR and Azark use this.
+
+The script also waits out bot-check pages and clicks common cookie "Accept" buttons.
+
 To use your own image instead, drop it in `assets/screens/` and add `"slug": "assets/screens/slug.webp"` to `js/screens.js`.
 
 **Fallback order:** a local screenshot in `js/screens.js` → the live screenshot service (`CONFIG.screenshotService` in `main.js`, which uses thum.io by default) → a styled placeholder.

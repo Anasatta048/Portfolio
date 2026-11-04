@@ -3,5 +3,15 @@
    here fall back to a live screenshot service, then to a placeholder. */
 window.LOCAL_SCREENS = {
   "pharmacy-management": "assets/screens/pharmacy-management.webp",
-  "expense-tracker": "assets/screens/expense-tracker.webp"
+  "expense-tracker": "assets/screens/expense-tracker.webp",
+  "talk-to-trader": "assets/screens/talk-to-trader.webp",
+  "gmb-manager": "assets/screens/gmb-manager.webp",
+  "azark-pos": "assets/screens/azark-pos.webp",
+  "123oil": "assets/screens/123oil.webp",
+  "directwaycars": "assets/screens/directwaycars.webp",
+  "hrm-brandixstack": "assets/screens/hrm-brandixstack.webp",
+  "dreamelect-logistics": "assets/screens/dreamelect-logistics.webp",
+  "siddique-sons": "assets/screens/siddique-sons.webp",
+  "florenza": "assets/screens/florenza.webp",
+  "bcr-publishing": "assets/screens/bcr-publishing.webp"
 };

@@ -61,19 +61,50 @@ window.LOCAL_SCREENS = ${body};
 
 /** Scroll to the bottom so lazy images / reveal animations render */
 async function autoScroll(page) {
+  // slow enough for IntersectionObserver "reveal on scroll" sections to fire
   await page.evaluate(async () => {
     await new Promise((resolve) => {
       let y = 0;
       const step = () => {
-        window.scrollBy(0, 600);
-        y += 600;
-        if (y < document.body.scrollHeight && y < 20000) setTimeout(step, 120);
+        window.scrollBy(0, 450);
+        y += 450;
+        if (y < document.body.scrollHeight && y < 20000) setTimeout(step, 260);
         else resolve();
       };
       step();
     });
-    window.scrollTo(0, 0);
   });
+  await page.waitForTimeout(900);
+  await page.evaluate(() => window.scrollTo(0, 0));
+}
+
+/** Wait out bot-checks / preloaders ("Please wait…", "Checking your browser…") */
+async function waitPastInterstitial(page, ms = 25000) {
+  const re = /please wait while your request is being verified|checking your browser|just a moment/i;
+  const end = Date.now() + ms;
+  while (Date.now() < end) {
+    const text = await page.evaluate(() => (document.body ? document.body.innerText.slice(0, 2000) : "")).catch(() => "");
+    if (!re.test(text)) return true;
+    await page.waitForTimeout(1500);
+  }
+  return false;
+}
+
+/** Click a typical cookie-consent "accept" button if one is showing */
+async function dismissCookies(page) {
+  const labels = /^(accept( all)?( cookies)?|allow( all)?( cookies)?|i agree|agree|got it|ok(ay)?|accept & close)$/i;
+  for (const frame of page.frames()) {
+    const buttons = await frame.$$("button, a[role=button], [role=button], input[type=button], input[type=submit]").catch(() => []);
+    for (const b of buttons) {
+      const t = ((await b.innerText().catch(() => "")) || (await b.getAttribute("value").catch(() => "")) || "").trim();
+      if (labels.test(t) && (await b.isVisible().catch(() => false))) {
+        await b.click({ timeout: 2000 }).catch(() => {});
+        await page.waitForTimeout(600);
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 (async () => {
@@ -90,13 +121,39 @@ async function autoScroll(page) {
 
   for (const p of projects) {
     const page = await context.newPage();
-    process.stdout.write(`→ ${p.slug.padEnd(22)} ${p.url} … `);
+    // "capture" lets the screenshot come from another page (e.g. staging)
+    // while the site keeps showing the public "url"
+    const target = p.capture || p.url;
+    process.stdout.write(`→ ${p.slug.padEnd(22)} ${target} … `);
     try {
-      await page.goto(p.url, { waitUntil: "networkidle", timeout: 45000 }).catch(() => page.waitForTimeout(3000));
+      await page.goto(target, { waitUntil: "networkidle", timeout: 45000 }).catch(() => page.waitForTimeout(3000));
+      if (!(await waitPastInterstitial(page))) process.stdout.write("(still on a verification page) ");
+      await page.waitForLoadState("networkidle", { timeout: 15000 }).catch(() => {});
+      // preloaders / intro animations: per-project override via "wait" in projects.json
+      await page.waitForTimeout(p.wait || 3000);
+      await dismissCookies(page);
       await autoScroll(page);
       await page.waitForTimeout(1500);
-      // kill fixed headers/animations duplicating down the page
-      await page.addStyleTag({ content: "*{animation:none!important;transition:none!important;scroll-behavior:auto!important}" });
+      // "forceReveal": true in projects.json → un-hide scroll-reveal blocks that
+      // stay at opacity:0 in headless browsers (AOS/WOW/custom reveal scripts)
+      if (p.forceReveal) {
+        await page.evaluate(() => {
+          document.querySelectorAll("body *").forEach((el) => {
+            const s = getComputedStyle(el);
+            if (s.position === "fixed" || el.offsetHeight < 20) return;
+            // leave menus / dropdowns / modals closed
+            if (el.closest("header, nav, [role=menu], [role=dialog]")) return;
+            if (s.opacity === "0" || s.visibility === "hidden") {
+              el.style.setProperty("opacity", "1", "important");
+              el.style.setProperty("visibility", "visible", "important");
+              el.style.setProperty("transform", "none", "important");
+            }
+          });
+        });
+        await page.waitForTimeout(800);
+      }
+      // note: CSS animations are NOT disabled — fade-in sections with fill-mode
+      // "forwards" would snap back to opacity:0 and render blank.
       const height = await page.evaluate(() => document.documentElement.scrollHeight);
       const png = path.join(OUT, `${p.slug}.png`);
       await page.screenshot({ path: png, fullPage: true, clip: { x: 0, y: 0, width: WIDTH, height: Math.min(height, MAX_HEIGHT) } });
