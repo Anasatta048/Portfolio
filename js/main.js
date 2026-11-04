@@ -542,7 +542,7 @@
     let base;
     if (t < d("2024-08-01")) base = 0.25; // university side projects
     else if (t < d("2025-03-01")) base = 0.55; // Ifinity Hub
-    else if (t < d("2025-08-01")) base = 0.45; // FYP + freelance
+    else if (t < d("2025-08-01")) base = 0.45; // freelance
     else if (t < d("2026-03-01")) base = 0.72; // Bluehorn
     else base = 0.86; // BrandixSoft
     const day = date.getDay();
