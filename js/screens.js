@@ -2,8 +2,6 @@
    Maps a project slug to its local full-page screenshot. Projects missing
    here fall back to a live screenshot service, then to a placeholder. */
 window.LOCAL_SCREENS = {
-  "pharmacy-management": "assets/screens/pharmacy-management.webp",
-  "expense-tracker": "assets/screens/expense-tracker.webp",
   "talk-to-trader": "assets/screens/talk-to-trader.webp",
   "gmb-manager": "assets/screens/gmb-manager.webp",
   "azark-pos": "assets/screens/azark-pos.webp",

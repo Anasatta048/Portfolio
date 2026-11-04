@@ -12,7 +12,7 @@
    8.  GSAP animation system (data-anim, pin, skill bars, parallax…)
    9.  Preloader + hero intro
    10. Tilt + glare, magnetic buttons, custom cursor
-   11. Project drawer (modal) + live iframe preview
+   11. Project drawer (modal) with full-page screenshot
    12. Command palette + header search
    13. Clipboard + toasts
    14. Contact terminal form
@@ -1308,7 +1308,7 @@
   }
 
   /* ======================================================================
-     11. Project drawer (GitHub-style modal) + sandboxed live preview
+     11. Project drawer (GitHub-style modal)
      ====================================================================== */
   const drawer = $("#drawer");
   const drawerPanel = $(".drawer__panel", drawer);
@@ -1350,23 +1350,12 @@
         <button class="btn-icon drawer__close" type="button" data-close aria-label="Close project details">${icon("x")}</button>
       </header>
       <div class="drawer__body">
-        <div class="drawer__tabs" role="tablist" aria-label="Preview mode">
-          <button class="drawer__tab" role="tab" id="dtab-shot" aria-selected="true" aria-controls="dpanel-shot">${icon("eye")}Preview</button>
-          ${p.url ? `<button class="drawer__tab" role="tab" id="dtab-live" aria-selected="false" aria-controls="dpanel-live" tabindex="-1">${icon("globe")}Live preview</button>` : ""}
+        <div class="drawer__tabs">
+          <span class="drawer__tab is-active">${icon("eye")}Full-page screenshot</span>
         </div>
-        <div class="drawer__preview" id="dpanel-shot" role="tabpanel" aria-labelledby="dtab-shot">
+        <div class="drawer__preview">
           ${browserHTML(p, { size: 1440 })}
         </div>
-        ${
-          p.url
-            ? `<div class="drawer__preview" id="dpanel-live" role="tabpanel" aria-labelledby="dtab-live" hidden>
-                <div class="browser">
-                  <div class="browser__toolbar"><div class="address">${icon("lock")}<span class="address__url">${esc(p.url)}</span></div><span class="live-badge"><span class="live-dot"></span>Live</span></div>
-                  <div class="iframe-wrap" id="iframe-wrap"></div>
-                </div>
-              </div>`
-            : ""
-        }
         <div class="drawer__cols">
           <div class="drawer__about">
             <h3>${icon("book-open")} README.md</h3>
@@ -1389,38 +1378,8 @@
       </div>`;
   }
 
-  function loadIframe(p) {
-    const wrap = $("#iframe-wrap");
-    if (!wrap || wrap.dataset.loaded) return;
-    wrap.dataset.loaded = "1";
-    wrap.innerHTML = `
-      <div class="iframe-loading"><span class="spinner"></span><span>Booting ${esc(p.url)}…</span></div>
-      <iframe src="${esc(p.url)}" title="Live preview of ${esc(p.name)}" loading="lazy" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe>`;
-    const frame = $("iframe", wrap);
-    const loading = $(".iframe-loading", wrap);
-    const fallback = () => {
-      if ($(".iframe-fallback", wrap)) return;
-      wrap.insertAdjacentHTML(
-        "beforeend",
-        `<div class="iframe-fallback">${icon("lock", "icon")}<p>This site blocks embedding (X-Frame-Options / CSP) or took too long to respond.</p>
-          <a class="btn btn-primary" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${icon("external")}Open ${esc(p.name)} in a new tab</a></div>`
-      );
-    };
-    // Cross-origin frames can't be inspected, so: if nothing loads in 9s → fallback,
-    // and after load keep a small hint in case the frame rendered a block page.
-    const timer = setTimeout(fallback, 9000);
-    frame.addEventListener("load", () => {
-      clearTimeout(timer);
-      loading.remove();
-      wrap.insertAdjacentHTML(
-        "beforeend",
-        `<div class="iframe-note"><span>Blank or refused? The site may block embedding.</span><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">Open in new tab ↗</a></div>`
-      );
-    });
-  }
-
   function trapFocus(container, e) {
-    const f = $$('a[href], button:not([disabled]), input, textarea, select, iframe, [tabindex]:not([tabindex="-1"])', container).filter(
+    const f = $$('a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])', container).filter(
       (el) => el.offsetParent !== null
     );
     if (!f.length) return;
@@ -1466,34 +1425,13 @@
         hasGSAP && gsap.fromTo("#star-wrap .icon", { scale: 0.4, rotate: -90 }, { scale: 1, rotate: 0, duration: 0.6, ease: "back.out(3)" });
       }
     });
-
-    // preview tabs
-    const tabs = $$(".drawer__tab", drawer);
-    tabs.forEach((tab) =>
-      tab.addEventListener("click", () => {
-        tabs.forEach((t) => {
-          const on = t === tab;
-          t.setAttribute("aria-selected", on);
-          t.tabIndex = on ? 0 : -1;
-          $("#" + t.getAttribute("aria-controls")).hidden = !on;
-        });
-        if (tab.id === "dtab-live") loadIframe(p);
-      })
-    );
-    $(".drawer__tabs", drawer).addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-      const i = tabs.indexOf(document.activeElement);
-      const next = tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
-      next.focus();
-      next.click();
-    });
   }
 
   function closeProject() {
     if (!drawer || drawer.hidden) return;
     const done = () => {
       drawer.hidden = true;
-      drawerContent.innerHTML = ""; // also unloads the iframe
+      drawerContent.innerHTML = "";
       document.body.classList.remove("is-locked");
       lastFocus && lastFocus.focus && lastFocus.focus({ preventScroll: true });
     };
