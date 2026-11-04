@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-tools",
+  "private": true,
+  "description": "Offline helpers for the portfolio (not needed to run the site).",
+  "scripts": {
+    "capture": "node capture.js"
+  },
+  "dependencies": {
+    "playwright": "^1.47.0"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

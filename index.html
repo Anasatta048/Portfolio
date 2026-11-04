@@ -1,396 +1,774 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Portfolio | 404: Sleep Not Found</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Anas Atta — Full Stack Developer (Laravel · React · Next.js · Python)</title>
+  <meta name="description" content="Anas Atta is a Full Stack Developer from Gujranwala, Pakistan shipping production web apps with Laravel, React, Next.js, MySQL and Python — booking engines, ERP/POS, HR systems, Google API integrations and scrapers." />
+  <meta name="author" content="Anas Atta" />
+  <meta name="keywords" content="Anas Atta, Full Stack Developer, Laravel Developer, React Developer, Next.js, PHP, Python, Pakistan, Gujranwala, Lahore, portfolio" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="color-scheme" content="dark light" />
+  <!-- Update SITE URL in these 3 tags once deployed (see README) -->
+  <link rel="canonical" href="https://anasatta048.github.io/portfolio/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Anas Atta — Portfolio" />
+  <meta property="og:title" content="Anas Atta — Full Stack Developer" />
+  <meta property="og:description" content="Laravel · React · Next.js · Python. Booking engines, ERP/POS, HR systems, Google API integrations and scrapers — schema to UI to deploy." />
+  <meta property="og:url" content="https://anasatta048.github.io/portfolio/" />
+  <meta property="og:image" content="https://anasatta048.github.io/portfolio/assets/img/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Anas Atta — Full Stack Developer portfolio" />
+  <meta property="profile:first_name" content="Anas" />
+  <meta property="profile:last_name" content="Atta" />
+  <meta property="profile:username" content="anasatta048" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Anas Atta — Full Stack Developer" />
+  <meta name="twitter:description" content="Laravel · React · Next.js · Python — production web apps from schema to deploy." />
+  <meta name="twitter:image" content="https://anasatta048.github.io/portfolio/assets/img/og.png" />
+
+  <!-- Icons -->
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+
+  <!-- Perf: warm up CDN + preload the LCP avatar -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="dns-prefetch" href="https://image.thum.io" />
+  <link rel="preload" as="image" href="assets/img/avatar-pixel.webp" type="image/webp" />
+
+  <!-- Theme bootstrap: runs before paint so there is no flash of the wrong theme -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var sys = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", saved || sys);
+      } catch (e) {}
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Structured data: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Anas Atta",
+    "alternateName": "anasatta048",
+    "jobTitle": "Full Stack Developer",
+    "description": "Full Stack Developer building production web applications with Laravel, PHP, React, Next.js, MySQL and Python.",
+    "email": "mailto:anasatta048@gmail.com",
+    "telephone": "+923322665959",
+    "image": "https://anasatta048.github.io/portfolio/assets/img/avatar-pixel.webp",
+    "url": "https://anasatta048.github.io/portfolio/",
+    "address": { "@type": "PostalAddress", "addressLocality": "Gujranwala", "addressCountry": "PK" },
+    "worksFor": { "@type": "Organization", "name": "BrandixSoft" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of the Punjab" },
+    "knowsAbout": ["Laravel", "PHP", "React", "Next.js", "Inertia.js", "Livewire", "MySQL", "Python", "Web scraping", "REST APIs", "Google APIs", "Docker", "Linux"],
+    "sameAs": ["https://github.com/anasatta048", "https://www.linkedin.com/in/anas-atta-036773279"]
+  }
+  </script>
 </head>
 
 <body>
+  <!-- =========================================================
+       SVG sprite (octicon-style 24px stroke icons). Use with:
+       <svg class="icon"><use href="#i-name"/></svg>
+       ========================================================= -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-logo" viewBox="0 0 32 32"><path fill="currentColor" d="M16 1.5a14.5 14.5 0 1 0 0 29 14.5 14.5 0 0 0 0-29Zm0 2.6a11.9 11.9 0 1 1 0 23.8 11.9 11.9 0 0 1 0-23.8Z"/><path fill="currentColor" d="M10.6 22.2 15 9.4h2.1l4.4 12.8h-2.5l-1-3.1h-4.1l-1 3.1h-2.3Zm4-5.2h2.8L16 12.5 14.6 17Z"/><circle cx="23.6" cy="9.4" r="1.8" fill="currentColor"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/></g></symbol>
+      <symbol id="i-command" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2M12 20.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M1.5 12h2M20.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></g></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></g></symbol>
+      <symbol id="i-book-open" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></g></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5-4.8-4.6 6.6-.9z"/></symbol>
+      <symbol id="i-fork" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="5" r="2.5"/><circle cx="18" cy="5" r="2.5"/><circle cx="12" cy="19" r="2.5"/><path d="M6 7.5v1.5a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V7.5M12 12v4.5"/></g></symbol>
+      <symbol id="i-branch" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></g></symbol>
+      <symbol id="i-commit" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M1 12h7M16 12h7"/></g></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6.5-8 12-8 12S4 16.5 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></g></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></g></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></g></symbol>
+      <symbol id="i-smartphone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/></g></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></g></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5.1 5.1 0 0 0 19.9 1S18.7.7 16 2.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5.1 5.1 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></g></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></g></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6M10 14 21 3"/></g></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></g></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></g></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m4 17 6-6-6-6M12 19h8"/></symbol>
+      <symbol id="i-briefcase" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></g></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></g></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 6.5V12l3.5 2"/></g></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></g></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+      <symbol id="i-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.2V16c2 2 10 2 12 0v-4.8M22 9v6"/></g></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10A15 15 0 0 1 12 2z"/></g></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
+      <symbol id="i-database" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.7-4 3-9 3s-9-1.3-9-3M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/></g></symbol>
+      <symbol id="i-server" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></g></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></g></symbol>
+      <symbol id="i-shopping-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></g></symbol>
+      <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></g></symbol>
+      <symbol id="i-trending-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m23 6-9.5 9.5-5-5L1 18M17 6h6v6"/></symbol>
+      <symbol id="i-package" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></g></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1 7.8 7.7 7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+      <symbol id="i-file-text" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></g></symbol>
+      <symbol id="i-crosshair" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M22 12h-4M6 12H2M12 6V2M12 22v-4"/></g></symbol>
+      <symbol id="i-bar-chart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 20V10M18 20V4M6 20v-4"/></symbol>
+      <symbol id="i-plus-square" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></g></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></symbol>
+      <symbol id="i-flame" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 22c4 0 7-3 7-7 0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-3 3-5 5-5 8 0 4 3 7 7 7z"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></g></symbol>
+      <symbol id="i-pulse" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    </defs>
+  </svg>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">BUILD//DEV</div>
-        <ul class="nav-links">
-            <li><a href="#about">Foundation</a></li>
-            <li><a href="#skills">Structure</a></li>
-            <li><a href="#projects">Units</a></li>
-            <li><a href="#experience">Blueprints</a></li>
-            <li><a href="#contact">Control Panel</a></li>
-        </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ======================= Preloader ======================= -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__box">
+      <svg class="preloader__logo" viewBox="0 0 32 32"><use href="#i-logo"/></svg>
+      <div class="preloader__term mono">
+        <p><span class="t-green">$</span> git clone anasatta048/portfolio</p>
+        <p class="t-muted" id="preloader-line">Initializing portfolio...</p>
+        <div class="preloader__bar"><span id="preloader-fill"></span></div>
+        <p class="t-muted preloader__pct"><span id="preloader-pct">0</span>%</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll progress (GitHub green) -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+
+  <!-- ======================= Header ======================= -->
+  <header class="site-header" id="site-header">
+    <div class="header__bar container">
+      <a class="header__brand" href="#top" aria-label="Anas Atta — back to top">
+        <svg class="header__logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-logo"/></svg>
+        <span class="header__crumb mono"><span class="t-muted">anasatta048</span><span class="t-muted">/</span><strong>portfolio</strong></span>
+      </a>
+
+      <div class="header__search" role="search">
+        <label class="sr-only" for="site-search">Search sections and projects</label>
+        <svg class="icon header__search-icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="site-search" type="search" autocomplete="off" placeholder="Type / to search" aria-controls="search-results" aria-expanded="false" aria-autocomplete="list" />
+        <kbd class="header__kbd" aria-hidden="true">/</kbd>
+        <ul class="search-results" id="search-results" role="listbox" hidden></ul>
+      </div>
+
+      <div class="header__actions">
+        <button class="btn-icon" type="button" id="palette-open" aria-label="Open command palette (Ctrl or Command + K)" data-cursor>
+          <svg class="icon" aria-hidden="true"><use href="#i-command"/></svg>
+        </button>
+        <button class="btn-icon theme-toggle" type="button" id="theme-toggle" aria-label="Toggle color theme" data-cursor>
+          <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+        <a class="btn btn-primary btn-sm header__hire" href="#contact" data-magnetic>Hire me</a>
+      </div>
+    </div>
+
+    <!-- Underline tab nav -->
+    <nav class="tabs container" aria-label="Sections">
+      <ul class="tabs__list" id="tabs">
+        <li><a class="tabs__link" href="#overview" data-tab="overview"><svg class="icon" aria-hidden="true"><use href="#i-book-open"/></svg>Overview</a></li>
+        <li><a class="tabs__link" href="#repositories" data-tab="repositories"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg>Repositories <span class="counter" id="repo-count">20</span></a></li>
+        <li><a class="tabs__link" href="#projects" data-tab="projects"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>Projects <span class="counter" id="proj-count">6</span></a></li>
+        <li><a class="tabs__link" href="#stack" data-tab="stack"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>Stack</a></li>
+        <li><a class="tabs__link" href="#contact" data-tab="contact"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Contact</a></li>
+      </ul>
+      <span class="tabs__indicator" id="tabs-indicator" aria-hidden="true"></span>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <div class="scaffold-container" id="hero-scaffold">
-            <!-- Scaffolding lines will be generated here -->
+  <main id="main" tabindex="-1">
+    <!-- ======================= Hero ======================= -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__fallback" aria-hidden="true"></div>
+      <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero__grid-bg" aria-hidden="true" data-speed="0.25"></div>
+
+      <div class="hero__inner container">
+        <div class="hero__copy">
+          <p class="hero__prompt mono" data-hero>
+            <span class="t-green">anas@github</span><span class="t-muted">:</span><span class="t-accent">~/portfolio</span><span class="t-muted">$</span> whoami
+          </p>
+          <h1 class="hero__title" id="hero-title" data-split>Hi, I'm Anas&nbsp;Atta.</h1>
+          <p class="hero__role mono" data-hero>
+            <span class="sr-only">Full Stack Developer — Laravel, React, Next.js, Python</span>
+            <span aria-hidden="true"><span class="t-green">&gt;</span> <span id="typed"></span><span class="caret"></span></span>
+          </p>
+          <p class="hero__lede" data-hero>
+            I ship production web apps end to end — <strong>database schema</strong>, <strong>REST APIs</strong> and background jobs, then the <strong>interface</strong> on top, then the <strong>Linux deploy</strong>. Booking &amp; quote engines, ERP/POS, HR systems, Google-API integrations and scrapers that behave like real users.
+          </p>
+          <div class="hero__cta" data-hero>
+            <a class="btn btn-primary btn-lg" href="#contact" data-magnetic>
+              <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>Hire me
+            </a>
+            <a class="btn btn-lg" href="#projects" data-magnetic>
+              <svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg>See live projects
+            </a>
+            <a class="btn btn-lg btn-ghost" href="assets/Anas_Atta_Resume.pdf" download>
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Resume
+            </a>
+          </div>
+          <ul class="hero__stats" data-hero>
+            <li><strong data-count="2">0</strong><span>years shipping</span></li>
+            <li><strong data-count="3">0</strong><span>teams</span></li>
+            <li><strong data-count="20" data-stat="repos">0</strong><span>repositories</span></li>
+            <li><strong data-count="10" data-stat="live">0</strong><span>live sites</span></li>
+          </ul>
         </div>
-        <div class="hero-content">
-            <div class="status-badge">PRPJECT_STATUS: UNDER_CONSTRUCTION</div>
-            <h1 class="construction-text" data-text="Anas Atta">Anas Atta</h1>
-            <div class="assembly-indicator">
-                <span class="indicator-text">ASSEMBLING TAGLINE...</span>
-                <div class="typewriter">
-                    <span id="typing-text"></span><span class="cursor">_</span>
-                </div>
+
+        <!-- Floating terminal (parallax) -->
+        <div class="hero__visual" data-speed="-0.15" aria-hidden="true">
+          <div class="term-card" data-hero>
+            <div class="term-card__head">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span class="mono t-muted">zsh — anasatta048</span>
             </div>
-            <p class="hero-tagline">Building robust digital foundations since 2024</p>
-            <div class="hero-contact">
-                <span>✉ anasatta048@gmail.com</span>
-                <span>📞 03322665959</span>
-                <span>📍 Gujranwala, PK</span>
-            </div>
-            <div class="hero-actions">
-                <a href="https://linkedin.com/in/anasatta048" target="_blank" class="construction-btn">
-                    <span class="btn-icon">💼</span>
-                    <span class="btn-text">LinkedIn</span>
-                </a>
-                <a href="https://github.com/anasatta048" target="_blank" class="construction-btn">
-                    <span class="btn-icon">🐙</span>
-                    <span class="btn-text">GitHub</span>
-                </a>
-                <a href="#contact" class="construction-btn">
-                    <span class="btn-icon">🏗️</span>
-                    <span class="btn-text">Initiate Build</span>
-                </a>
-            </div>
+            <pre class="term-card__body mono" id="hero-term"><span class="t-muted"># recent activity</span>
+<span class="t-green">$</span> git log --oneline -5
+<span class="t-orange">a1f9c3e</span> feat(ttt): UK + US directory on one codebase
+<span class="t-orange">7c2d5b1</span> feat(gmb): OAuth + insights charts
+<span class="t-orange">e94b0aa</span> fix(sec): rate-limit bots off a live site
+<span class="t-orange">3b6e21f</span> feat(pos): multi-branch stock + P&amp;L
+<span class="t-orange">0d8a7c4</span> perf(db): index hot query paths
+<span class="t-green">$</span> php artisan about --only=env
+<span class="t-accent">Laravel</span> 12 · <span class="t-accent">PHP</span> 8.3 · <span class="t-accent">React</span> 19
+<span class="t-green">$</span> <span class="caret"></span></pre>
+          </div>
+          <div class="hero__badge-float" data-hero>
+            <span class="status-dot"></span> Available for work
+          </div>
         </div>
-        <div class="construction-warning">
-            <div class="warning-strip">CAUTION: GENIUS AT WORK // WEAR HARD HATS</div>
-        </div>
-        <div class="scroll-instruction">
-            <span>SCROLL TO DEPLOY</span>
-            <div class="mouse-icon"></div>
-        </div>
+      </div>
+
+      <a class="hero__scroll mono" href="#overview" aria-label="Scroll to overview">
+        <span>scroll</span><i aria-hidden="true"></i>
+      </a>
     </section>
 
-    <!-- About Section — Foundation -->
-    <section id="about" class="section about-section foundation-theme">
-        <div class="container">
-            <h2 class="section-title">01_Foundation</h2>
-            <div class="about-grid">
-                <div class="foundation-texture">
-                    <div class="code-comment">// EXCAVATING CORE VALUES...</div>
-                    <div class="code-comment">// POURING LIQUID PASSION...</div>
-                    <div class="code-comment">// REINFORCING WITH SOLID.js</div>
-                </div>
-                <div class="about-content-wrapper">
-                    <div class="about-text-panel">
-                        <p class="foundation-stamp">OFFICIAL_RECORD_v3.0</p>
-                        <h3>Building blocks of a developer.</h3>
-                        <p>Motivated Software Engineer with a strong foundation in OOP, software architecture, and database systems. Skilled in building scalable full-stack solutions using Laravel and React.js. Adept at problem-solving and collaborating in agile environments with a focus on clean, efficient, and testable code.</p>
-                        <div class="education-block">
-                            <h4>🎓 EDUCATION_BASE</h4>
-                            <p><strong>University of the Punjab</strong> — BS in Computer Science</p>
-                            <p class="micro-label">CGPA: 3.51 | 2021 – 2025</p>
-                            <p class="micro-label">Relevant: OOP, Operating Systems, Data Structures & Algorithms, Computer Networks, Software Engineering, Database Systems</p>
-                        </div>
-                        <ul class="foundation-specs">
-                            <li><span class="spec-label">COFFEE_LEVEL:</span> HIGH</li>
-                            <li><span class="spec-label">STABILITY_RATING:</span> PROBABLY_OK</li>
-                            <li><span class="spec-label">BUG_TOLERANCE:</span> 0.00%</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="about-visual-panel">
-                    <div class="foundation-frame">
-                        <img src="assets/profile1.jpeg" alt="Anas Atta" class="foundation-img">
-                        <div class="dev-peek" id="dev-peek">
-                            <span class="peek-emoji">👀</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- ======================= Overview (profile layout) ======================= -->
+    <section class="section overview" id="overview" aria-labelledby="overview-title">
+      <div class="container profile-layout">
+        <!-- Sidebar -->
+        <aside class="profile" aria-label="Profile">
+          <div class="profile__avatar-wrap" data-anim="rtl">
+            <button class="profile__avatar" type="button" id="avatar-flip" aria-label="Flip avatar between pixel art and photo" data-cursor>
+              <img class="avatar-front" src="assets/img/avatar-pixel.webp" alt="Pixel-art portrait of Anas Atta" width="296" height="296" fetchpriority="high" />
+              <img class="avatar-back" src="assets/img/avatar-photo.webp" alt="Photo of Anas Atta" width="296" height="296" loading="lazy" />
+            </button>
+            <span class="profile__status" title="Available for work"><span aria-hidden="true">🚀</span><span class="profile__status-text">Available for work</span></span>
+          </div>
+
+          <div class="profile__names" data-anim="rtl" data-delay="0.05">
+            <h2 class="profile__name" id="overview-title">Anas Atta</h2>
+            <p class="profile__username mono">anasatta048</p>
+          </div>
+
+          <p class="profile__bio" data-anim="rtl" data-delay="0.1">Full Stack Developer — Laravel + React.js. Building robust digital foundations since 2024. Schema → API → UI → deploy.</p>
+
+          <div class="profile__actions" data-anim="rtl" data-delay="0.15">
+            <a class="btn btn-block" href="https://github.com/anasatta048" target="_blank" rel="noopener noreferrer" id="follow-btn">
+              <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Follow on GitHub
+            </a>
+            <span class="badge badge-green badge-status"><span class="status-dot"></span> Available for work</span>
+          </div>
+
+          <p class="profile__follow mono t-muted" data-anim="rtl" data-delay="0.2">
+            <svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>
+            <strong>3</strong> teams · <strong data-stat="repos">20</strong> repos · <strong data-stat="live">10</strong> live
+          </p>
+
+          <ul class="profile__meta" data-anim="rtl" data-stagger="0.08">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg>BrandixSoft · Lahore</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Gujranwala, Pakistan</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span id="local-time">PKT (UTC+05:00)</span></li>
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+              <a href="mailto:anasatta048@gmail.com">anasatta048@gmail.com</a>
+              <button class="btn-copy" type="button" data-copy="anasatta048@gmail.com" aria-label="Copy email address"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button>
+            </li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+923322665959">03322665959</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg><a href="https://github.com/anasatta048" target="_blank" rel="noopener noreferrer">github.com/anasatta048</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://www.linkedin.com/in/anas-atta-036773279" target="_blank" rel="noopener noreferrer">in/anas-atta</a></li>
+          </ul>
+
+          <div class="profile__block" data-anim="rtl">
+            <h3 class="profile__h">Achievements</h3>
+            <ul class="achievements">
+              <li title="CGPA 3.51 — University of the Punjab"><span aria-hidden="true">🎓</span><span class="sr-only">CGPA 3.51</span></li>
+              <li title="Shipped to production at 3 teams"><span aria-hidden="true">🚢</span><span class="sr-only">Shipped at 3 teams</span></li>
+              <li title="Shipped: 10 live deployments"><span aria-hidden="true">🦈</span><span class="sr-only">10 live deployments</span></li>
+              <li title="Night Owl — 404: Sleep Not Found"><span aria-hidden="true">🦉</span><span class="sr-only">404: Sleep Not Found</span></li>
+              <li title="Bug tolerance: 0.00%"><span aria-hidden="true">🐛</span><span class="sr-only">Bug tolerance 0%</span></li>
+            </ul>
+          </div>
+
+          <div class="profile__block" data-anim="rtl">
+            <h3 class="profile__h">Organizations</h3>
+            <ul class="orgs">
+              <li title="BrandixSoft — Mar 2026 → present">BX</li>
+              <li title="Bluehorn Technologies — Aug 2025 → Feb 2026">BH</li>
+              <li title="Ifinity Hub — Aug 2024 → Feb 2025">IH</li>
+              <li title="University of the Punjab — BS CS 2021 → 2025">PU</li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Main column -->
+        <div class="profile-main">
+          <!-- README.md -->
+          <article class="card readme" aria-labelledby="readme-h" data-anim="rtl">
+            <header class="card__head">
+              <svg class="icon" aria-hidden="true"><use href="#i-book-open"/></svg>
+              <span class="mono"><span class="t-muted">anasatta048 /</span> README<span class="t-muted">.md</span></span>
+            </header>
+            <div class="readme__body markdown">
+              <h2 id="readme-h" class="md-h1"><span class="md-hash" aria-hidden="true"># </span><span class="type-heading" data-type="Hi, I'm Anas 👋">Hi, I'm Anas 👋</span></h2>
+              <p class="md-lead">Full Stack Developer building production web apps with <strong>Laravel</strong> and <strong>React.js</strong> — based in Gujranwala, Pakistan.</p>
+              <p>Close to two years shipping real products across three teams — booking and quote engines, an ERP/POS suite, HR systems, a UK + US business directory, Google-API integrations, WordPress customisations and Python / Chrome-extension scrapers. I own features end to end: designing the database schema, writing the REST APIs and background jobs, then building the interface on top — and deploying it on Linux (Docker, SSH, cPanel). Comfortable living in the query profiler when a page is slow, and I use Claude Code daily for AI-assisted development.</p>
+              <p>Motivated software engineer with a strong foundation in OOP, software architecture and database systems from a BS at the University of the Punjab (CGPA 3.51) — which shows up in how I structure services, model data and reason about performance rather than just making things work. Adept at problem-solving and collaborating in agile environments with a focus on clean, efficient and testable code.</p>
+
+              <h3 class="md-h2"><span class="md-hash" aria-hidden="true">## </span>⚡ What I do</h3>
+              <ul class="md-list">
+                <li><code>Laravel 10 / 11 / 12</code> · REST APIs · queues &amp; jobs · Sanctum · middleware</li>
+                <li><code>React.js</code> · <code>Next.js</code> · Inertia.js · Livewire · React Native · Tailwind</li>
+                <li><code>MySQL</code> schema design, indexing &amp; query optimisation</li>
+                <li>Google OAuth / API integrations, payments (Stripe, SumUp) &amp; automation</li>
+                <li>Python scrapers (Requests, BeautifulSoup, Playwright) &amp; Chrome extensions (MV3)</li>
+              </ul>
+
+              <h3 class="md-h2"><span class="md-hash" aria-hidden="true">## </span>🧪 status.json</h3>
+              <pre class="md-code mono"><code>{
+  <span class="t-accent">"role"</span>: <span class="t-green">"Full Stack Developer @ BrandixSoft"</span>,
+  <span class="t-accent">"open_to_work"</span>: <span class="t-orange">true</span>,
+  <span class="t-accent">"coffee_level"</span>: <span class="t-green">"HIGH"</span>,
+  <span class="t-accent">"stability_rating"</span>: <span class="t-green">"PROBABLY_OK"</span>,
+  <span class="t-accent">"bug_tolerance"</span>: <span class="t-orange">0.00</span>,
+  <span class="t-accent">"sleep"</span>: <span class="t-red">"404: Sleep Not Found"</span>
+}</code></pre>
             </div>
+          </article>
+
+          <!-- Pinned -->
+          <section class="block" aria-labelledby="pinned-h">
+            <div class="block__head">
+              <h2 class="block__title" id="pinned-h" data-anim="rtl">Pinned</h2>
+              <a class="block__link" href="#repositories">All repositories <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+            <ol class="pinned" id="pinned" data-anim="rtl" data-stagger="0.12"></ol>
+          </section>
+
+          <!-- Contribution graph -->
+          <section class="block" aria-labelledby="contrib-h">
+            <div class="block__head">
+              <h2 class="block__title" id="contrib-h" data-anim="rtl"><span id="contrib-total">0</span> contributions in <span id="contrib-year-label">the last year</span></h2>
+            </div>
+            <div class="contrib-wrap" data-anim="rtl">
+              <div class="card contrib">
+                <div class="contrib__scroll">
+                  <div class="contrib__months mono" id="contrib-months" aria-hidden="true"></div>
+                  <div class="contrib__body">
+                    <div class="contrib__days mono" aria-hidden="true"><span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span></div>
+                    <div class="contrib__grid" id="contrib-grid" role="img" aria-label="Contribution heatmap"></div>
+                  </div>
+                </div>
+                <div class="contrib__foot">
+                  <span class="t-muted">Generated client-side for vibes — real code lives on <a href="https://github.com/anasatta048" target="_blank" rel="noopener noreferrer">GitHub</a>.</span>
+                  <span class="contrib__legend mono" aria-hidden="true">Less <i class="lv0"></i><i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i> More</span>
+                </div>
+              </div>
+              <div class="contrib__years" role="group" aria-label="Select contribution year" id="contrib-years">
+                <button type="button" class="year-btn is-active" data-year="last" aria-pressed="true">Last year</button>
+                <button type="button" class="year-btn" data-year="2026" aria-pressed="false">2026</button>
+                <button type="button" class="year-btn" data-year="2025" aria-pressed="false">2025</button>
+                <button type="button" class="year-btn" data-year="2024" aria-pressed="false">2024</button>
+              </div>
+            </div>
+            <div class="contrib-tip mono" id="contrib-tip" role="tooltip" hidden></div>
+          </section>
+
+          <!-- Experience as commit history -->
+          <section class="block" aria-labelledby="activity-h" id="experience">
+            <div class="block__head">
+              <h2 class="block__title" id="activity-h" data-anim="rtl">Contribution activity <span class="t-muted mono">— git log --experience</span></h2>
+            </div>
+
+            <ol class="commits">
+              <li class="commit-group" data-anim="rtl">
+                <div class="commit-group__head">
+                  <span class="commit-group__node"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
+                  <div>
+                    <h3>Full Stack Developer <span class="t-muted">· Laravel + React.js</span></h3>
+                    <p class="mono t-muted">BrandixSoft, Lahore · Mar 2026 — Present <span class="badge badge-green">HEAD → main</span></p>
+                  </div>
+                </div>
+                <ul class="commit-list" data-anim="rtl" data-stagger="0.1">
+                  <li><code class="sha"></code><span><b class="cc cc-feat">feat(talk-to-trader):</b> shipped a UK + US service directory end to end on one Laravel codebase — listings, reviews, plans, per-location SEO pages</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-feat">feat(gmb):</b> built a Google My Business manager — Google OAuth, location insights &amp; metric charts (Laravel, React, Inertia.js)</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-feat">feat(hrm):</b> developed an internal HRM — attendance, payroll, hiring &amp; role-based permissions</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-feat">feat(google):</b> integrated Google APIs to automate data extraction &amp; PDF reporting</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-fix">fix(crm):</b> maintained the internal CRM platform — bug fixes, updates &amp; enhancements</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-perf">perf(db):</b> designed &amp; evolved production MySQL schemas for high-volume data; tuned WordPress plugins &amp; sites</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-fix">fix(security):</b> added rate limiting &amp; throttling after bot traffic took a live site down — stability restored for real users</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-chore">chore(deploy):</b> deployed applications on Linux servers &amp; cPanel hosting</span></li>
+                </ul>
+              </li>
+
+              <li class="commit-group" data-anim="rtl">
+                <div class="commit-group__head">
+                  <span class="commit-group__node"><svg class="icon" aria-hidden="true"><use href="#i-branch"/></svg></span>
+                  <div>
+                    <h3>Full Stack / Laravel Developer <span class="t-muted">· Laravel 10/11 + React.js</span></h3>
+                    <p class="mono t-muted">Bluehorn Technologies, Lahore · Aug 2025 — Feb 2026 <span class="badge">merged</span></p>
+                  </div>
+                </div>
+                <ul class="commit-list" data-anim="rtl" data-stagger="0.1">
+                  <li><code class="sha"></code><span><b class="cc cc-feat">feat:</b> owned Laravel 10/11 web applications from database schema to UI</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-feat">feat(api):</b> built RESTful APIs &amp; wired third-party integrations</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-refactor">refactor:</b> custom middleware &amp; reusable components</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-perf">perf:</b> profiled and cut down slow request paths; code optimisation &amp; tuning on live systems</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-chore">chore:</b> Git &amp; GitHub for version control and collaboration</span></li>
+                </ul>
+              </li>
+
+              <li class="commit-group" data-anim="rtl">
+                <div class="commit-group__head">
+                  <span class="commit-group__node"><svg class="icon" aria-hidden="true"><use href="#i-commit"/></svg></span>
+                  <div>
+                    <h3>Laravel Developer <span class="t-muted">· Laravel 10 / 11</span></h3>
+                    <p class="mono t-muted">Ifinity Hub, Gujranwala · Aug 2024 — Feb 2025 <span class="badge">initial commit</span></p>
+                  </div>
+                </div>
+                <ul class="commit-list" data-anim="rtl" data-stagger="0.1">
+                  <li><code class="sha"></code><span><b class="cc cc-feat">feat:</b> built dynamic Laravel 10/11 web applications</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-feat">feat(api):</b> RESTful APIs with custom middleware &amp; reusable components</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-chore">chore:</b> managed version control with Git; reviewed &amp; collaborated on the team codebase via GitHub</span></li>
+                  <li><code class="sha"></code><span><b class="cc cc-init">init:</b> first commit — building robust digital foundations since 2024</span></li>
+                </ul>
+              </li>
+            </ol>
+          </section>
+
+          <!-- Education -->
+          <section class="block" aria-labelledby="edu-h" id="education">
+            <div class="block__head">
+              <h2 class="block__title" id="edu-h" data-anim="rtl">Education <span class="t-muted mono">— git tag --list</span></h2>
+            </div>
+            <ol class="edu" data-anim="rtl" data-stagger="0.12">
+              <li class="card edu__item">
+                <span class="edu__tag mono"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>v3.0 · degree</span>
+                <h3>University of the Punjab</h3>
+                <p class="mono t-muted">BS in Computer Science · 2021 — 2025</p>
+                <p class="edu__score mono">CGPA 3.51 / 4.0 · 88%</p>
+                <p class="t-muted">OOP · Operating Systems · Data Structures &amp; Algorithms · Computer Networks · Software Engineering · Database Systems</p>
+              </li>
+              <li class="card edu__item">
+                <span class="edu__tag mono"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>v2.0 · intermediate</span>
+                <h3>Punjab College, Gujranwala</h3>
+                <p class="mono t-muted">F.Sc Pre-Medical · 2019 — 2021</p>
+                <p class="edu__score mono">1020 / 1100 · 92.7%</p>
+                <p class="t-muted">Biology · Chemistry · Physics</p>
+              </li>
+              <li class="card edu__item">
+                <span class="edu__tag mono"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>v1.0 · where it started</span>
+                <h3>Federal Science College</h3>
+                <p class="mono t-muted">Matriculation (Science) · 2017 — 2019</p>
+                <p class="edu__score mono">987 / 1100 · 89.7%</p>
+                <p class="t-muted">Physics · Chemistry · Biology · Mathematics</p>
+              </li>
+            </ol>
+          </section>
         </div>
+      </div>
     </section>
 
-    <!-- Skills Section — Structure -->
-    <section id="skills" class="section skills-section structure-theme">
-        <div class="container">
-            <h2 class="section-title">02_Structure</h2>
-            <div class="skills-grid">
-                <!-- Languages — Foundation -->
-                <div class="skill-card facade">
-                    <div class="skill-header">
-                        <h3>LOAD_BEARING: LANGUAGES</h3>
-                        <span class="status-dot green"></span>
-                    </div>
-                    <div class="skill-body">
-                        <div class="skill-icon">💻</div>
-                        <h4>Programming Languages</h4>
-                        <p class="micro-label">// Core syntax foundation</p>
-                        <ul class="skill-tags">
-                            <li>PHP</li>
-                            <li>Python</li>
-                            <li>C++</li>
-                            <li>JavaScript</li>
-                            <li>SQL / PL/SQL</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- ======================= Repositories ======================= -->
+    <section class="section repos" id="repositories" aria-labelledby="repos-h">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow mono" data-anim="rtl"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg> anasatta048 / repositories</p>
+          <h2 class="section__title" id="repos-h" data-anim="rtl" data-delay="0.05">Everything I've shipped.</h2>
+          <p class="section__sub" data-anim="rtl" data-delay="0.1">Client platforms, internal tools, automation and the early stuff — filter by what they are. Click any card for details.</p>
+        </header>
 
-                <!-- Frameworks — Structure -->
-                <div class="skill-card plumbing">
-                    <div class="skill-header">
-                        <h3>LOAD_BEARING: FRAMEWORKS</h3>
-                        <span class="status-dot green"></span>
-                    </div>
-                    <div class="skill-body">
-                        <div class="skill-icon">�</div>
-                        <h4>Frameworks & Tools</h4>
-                        <p class="micro-label">// Structural integrity components</p>
-                        <ul class="skill-tags">
-                            <li>Laravel</li>
-                            <li>React.js</li>
-                            <li>React Native</li>
-                            <li>Livewire</li>
-                            <li>Git / GitHub</li>
-                            <li>VS Code</li>
-                            <li>Cisco Packet Tracer</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Databases & OS — Infrastructure -->
-                <div class="skill-card elevators">
-                    <div class="skill-header">
-                        <h3>LOAD_BEARING: INFRASTRUCTURE</h3>
-                        <span class="status-dot green"></span>
-                    </div>
-                    <div class="skill-body">
-                        <div class="skill-icon">�️</div>
-                        <h4>Databases & OS</h4>
-                        <p class="micro-label">// Data storage foundation</p>
-                        <ul class="skill-tags">
-                            <li>MySQL</li>
-                            <li>Database Management</li>
-                            <li>Windows</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="compilation-log" id="compilation-log">
-                <span class="log-cursor">></span> <span id="log-text">SYSTEM_READY...</span>
-            </div>
+        <div class="repos__toolbar" data-anim="rtl" data-delay="0.1">
+          <label class="sr-only" for="repo-search">Find a repository</label>
+          <div class="input-wrap">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+            <input class="input" id="repo-search" type="search" placeholder="Find a repository…" autocomplete="off" />
+          </div>
+          <div class="filters" id="filters" role="group" aria-label="Filter repositories by type"></div>
         </div>
+
+        <ul class="repo-grid" id="repo-grid"></ul>
+        <noscript><p class="repo-empty">Enable JavaScript to browse the projects — or visit <a href="https://github.com/anasatta048">github.com/anasatta048</a>.</p></noscript>
+        <p class="repo-empty mono t-muted" id="repo-empty" hidden>No repositories match that filter. <button type="button" class="link-btn" id="repo-reset">Clear filters</button></p>
+      </div>
     </section>
 
-    <!-- Projects Section — Rooms -->
-    <section id="projects" class="section projects-section room-theme">
-        <div class="container">
-            <h2 class="section-title">03_Units</h2>
-
-            <div class="projects-grid">
-                <!-- Unit 101: Uniguide B2B -->
-                <div class="project-card" data-unit="101">
-                    <div class="project-room-header">
-                        <span class="room-id">UNIT_101</span>
-                        <span class="room-status">OCCUPIED</span>
-                    </div>
-                    <div class="project-room-content">
-                        <h3>Uniguide B2B</h3>
-                        <p class="project-desc">High-performance B2B consultancy platform using Laravel, React, and Inertia.js to streamline client-firm interactions and lead management.</p>
-                        <div class="room-tech">
-                            <span>Laravel</span>
-                            <span>React</span>
-                            <span>Inertia.js</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unit 102: Booking Systems -->
-                <div class="project-card" data-unit="102">
-                    <div class="project-room-header">
-                        <span class="room-id">UNIT_102</span>
-                        <span class="room-status">OCCUPIED</span>
-                    </div>
-                    <div class="project-room-content">
-                        <h3>Booking Systems</h3>
-                        <p class="project-desc">Robust, scalable booking engines in Laravel with complex scheduling logic, automated notifications, and real-time availability tracking.</p>
-                        <div class="room-tech">
-                            <span>Laravel</span>
-                            <span>Scheduling</span>
-                            <span>Real-time</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unit 201: Google Business Manager -->
-                <div class="project-card" data-unit="201">
-                    <div class="project-room-header">
-                        <span class="room-id">UNIT_201</span>
-                        <span class="room-status">OCCUPIED</span>
-                    </div>
-                    <div class="project-room-content">
-                        <h3>Google Business Manager</h3>
-                        <p class="project-desc">Custom reporting tool that automates data extraction via Google Business APIs to generate location-based PDF business insights.</p>
-                        <div class="room-tech">
-                            <span>Google APIs</span>
-                            <span>Automation</span>
-                            <span>PDF Reports</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Unit 202: Talk to Trader -->
-                <div class="project-card" data-unit="202">
-                    <div class="project-room-header">
-                        <span class="room-id">UNIT_202</span>
-                        <span class="room-status">OCCUPIED</span>
-                    </div>
-                    <div class="project-room-content">
-                        <h3>Talk to Trader</h3>
-                        <p class="project-desc">High-traffic service directory for US/UK markets with optimized search functionality and vendor management workflows.</p>
-                        <div class="room-tech">
-                            <span>Laravel</span>
-                            <span>React</span>
-                            <span>Service Directory</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="construction-log projects-meta">
-                <span>PROJECT_TOTAL: 04</span>
-                <span>EFFICIENCY: 98.7%</span>
-                <span>BREW_COUNT: ∞</span>
-            </div>
+    <!-- ======================= Projects (pinned horizontal) ======================= -->
+    <section class="showcase" id="projects" aria-labelledby="projects-h">
+      <div class="showcase__pin">
+        <header class="showcase__head container">
+          <div>
+            <p class="eyebrow mono" data-anim="rtl"><span class="live-dot"></span> production · live deployments</p>
+            <h2 class="section__title" id="projects-h" data-anim="rtl" data-delay="0.05">Running in the wild.</h2>
+          </div>
+          <div class="showcase__meta" aria-hidden="true">
+            <span class="showcase__counter mono"><b id="showcase-current">01</b> / <span id="showcase-total">06</span></span>
+            <span class="showcase__progress"><span id="showcase-progress"></span></span>
+            <span class="showcase__hint mono t-muted">scroll <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+          </div>
+        </header>
+        <div class="showcase__viewport" id="showcase-viewport">
+          <ol class="showcase__track" id="showcase-track"></ol>
         </div>
+      </div>
     </section>
 
-    <!-- Experience Section — Blueprints -->
-    <section id="experience" class="section experience-section blueprint-theme">
-        <div class="container">
-            <h2 class="section-title">04_Blueprints</h2>
-            <div class="experience-timeline">
-                <div class="timeline-item" data-year="2026">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="blueprint-annotation top-right">SCALE: 1:1</span>
-                        <div class="timeline-header">
-                            <h3>Full Stack Developer (Laravel + React.js)</h3>
-                            <span class="company">Brandix Soft, Lahore, PK // ACTIVE_SITE</span>
-                            <span class="duration">Mar 2026 – Present</span>
-                        </div>
-                        <ul class="timeline-list">
-                            <li>Developed Laravel and React apps including a US/UK service directory</li>
-                            <li>Managed scalable schemas and logic for high-volume platform data</li>
-                            <li>Integrated Google APIs to automate data extraction and PDF reporting</li>
-                            <li>Optimized code and customized WordPress plugins for high-speed delivery</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item" data-year="2025">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="blueprint-annotation top-right">REVISION_B</span>
-                        <div class="timeline-header">
-                            <h3>Full Stack Developer (Laravel + React.js)</h3>
-                            <span class="company">Bluehorn Technologies, Lahore, PK // COMPLETED_SITE</span>
-                            <span class="duration">Aug 2025 – Feb 2026</span>
-                        </div>
-                        <ul class="timeline-list">
-                            <li>Developed and maintained web apps; handled database design and API integration</li>
-                            <li>Performed code optimization and performance tuning on live systems</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item" data-year="2024">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="blueprint-annotation top-right">REVISION_A</span>
-                        <div class="timeline-header">
-                            <h3>Laravel Developer</h3>
-                            <span class="company">Ifinity Hub, Gujranwala, PK // LEGACY_SITE</span>
-                            <span class="duration">Aug 2024 – Feb 2025</span>
-                        </div>
-                        <ul class="timeline-list">
-                            <li>Built dynamic web apps using Laravel 10/11; developed RESTful APIs and custom middleware</li>
-                            <li>Managed version control with Git/GitHub; reviewed and collaborated on team codebase</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <!-- ======================= Stack ======================= -->
+    <section class="section stack" id="stack" aria-labelledby="stack-h">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow mono" data-anim="rtl"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg> languages · frameworks · tools</p>
+          <h2 class="section__title" id="stack-h" data-anim="rtl" data-delay="0.05">The stack.</h2>
+          <p class="section__sub" data-anim="rtl" data-delay="0.1">GitHub-style language breakdown across everything above, then the tools I reach for.</p>
+        </header>
+
+        <!-- Language bar -->
+        <div class="card langs" data-anim="rtl">
+          <h3 class="langs__title">Languages</h3>
+          <div class="langbar" id="langbar" role="img" aria-label="PHP 48.2%, JavaScript 21.4%, Python 11.6%, TypeScript 7.3%, Blade 6.1%, SQL 3.2%, C++ 2.2%">
+            <span style="--w:48.2;--c:#4F5D95"></span>
+            <span style="--w:21.4;--c:#f1e05a"></span>
+            <span style="--w:11.6;--c:#3572A5"></span>
+            <span style="--w:7.3;--c:#3178c6"></span>
+            <span style="--w:6.1;--c:#f7523f"></span>
+            <span style="--w:3.2;--c:#e38c00"></span>
+            <span style="--w:2.2;--c:#f34b7d"></span>
+          </div>
+          <ul class="langs__legend mono" data-anim="rtl" data-stagger="0.06">
+            <li><i style="--c:#4F5D95"></i><b>PHP</b> <span data-count="48.2" data-decimals="1">0</span>%</li>
+            <li><i style="--c:#f1e05a"></i><b>JavaScript</b> <span data-count="21.4" data-decimals="1">0</span>%</li>
+            <li><i style="--c:#3572A5"></i><b>Python</b> <span data-count="11.6" data-decimals="1">0</span>%</li>
+            <li><i style="--c:#3178c6"></i><b>TypeScript</b> <span data-count="7.3" data-decimals="1">0</span>%</li>
+            <li><i style="--c:#f7523f"></i><b>Blade</b> <span data-count="6.1" data-decimals="1">0</span>%</li>
+            <li><i style="--c:#e38c00"></i><b>SQL / PL-SQL</b> <span data-count="3.2" data-decimals="1">0</span>%</li>
+            <li><i style="--c:#f34b7d"></i><b>C++</b> <span data-count="2.2" data-decimals="1">0</span>%</li>
+          </ul>
         </div>
+
+        <!-- Skill bars -->
+        <div class="skills">
+          <div class="card skill-card" data-anim="rtl">
+            <h3 class="skill-card__title"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>Languages</h3>
+            <ul class="skill-list">
+              <li class="skill" data-value="95"><span class="skill__name">PHP 8.2+</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="88"><span class="skill__name">JavaScript</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="82"><span class="skill__name">Python</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="82"><span class="skill__name">SQL / PL-SQL</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="72"><span class="skill__name">TypeScript</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="68"><span class="skill__name">C++</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+            </ul>
+          </div>
+
+          <div class="card skill-card" data-anim="rtl" data-delay="0.1">
+            <h3 class="skill-card__title"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>Frameworks &amp; libraries</h3>
+            <ul class="skill-list">
+              <li class="skill" data-value="95"><span class="skill__name">Laravel 10 / 11 / 12</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="87"><span class="skill__name">React.js</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="86"><span class="skill__name">Tailwind CSS</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="85"><span class="skill__name">Livewire</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="82"><span class="skill__name">Inertia.js</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="80"><span class="skill__name">Vite · Blade</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="78"><span class="skill__name">Alpine.js</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="74"><span class="skill__name">Next.js</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="72"><span class="skill__name">WordPress (plugins, customisation)</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="66"><span class="skill__name">React Native</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+            </ul>
+          </div>
+
+          <div class="card skill-card" data-anim="rtl" data-delay="0.2">
+            <h3 class="skill-card__title"><svg class="icon" aria-hidden="true"><use href="#i-server"/></svg>Backend &amp; integrations</h3>
+            <ul class="skill-list">
+              <li class="skill" data-value="90"><span class="skill__name">REST API design</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="90"><span class="skill__name">MySQL — schema, indexing, optimisation</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="85"><span class="skill__name">Google OAuth / Google APIs</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="82"><span class="skill__name">Sanctum auth · middleware</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="80"><span class="skill__name">Queues &amp; jobs</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="75"><span class="skill__name">Pest / PHPUnit</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="70"><span class="skill__name">Payments — Stripe, SumUp</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+            </ul>
+          </div>
+
+          <div class="card skill-card" data-anim="rtl" data-delay="0.3">
+            <h3 class="skill-card__title"><svg class="icon" aria-hidden="true"><use href="#i-crosshair"/></svg>Scraping &amp; automation</h3>
+            <ul class="skill-list">
+              <li class="skill" data-value="83"><span class="skill__name">Excel / CSV data pipelines</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="82"><span class="skill__name">Requests · BeautifulSoup</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="80"><span class="skill__name">Playwright · Puppeteer</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+              <li class="skill" data-value="78"><span class="skill__name">Chrome Extensions (Manifest V3)</span><span class="skill__val mono"><span>0</span>%</span><span class="skill__bar"><i></i></span></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="card tools" data-anim="rtl">
+          <h3 class="skill-card__title"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg>DevOps, tools &amp; concepts</h3>
+          <ul class="topics" data-anim="rtl" data-stagger="0.04">
+            <li class="topic">Docker</li><li class="topic">Ubuntu / Linux</li><li class="topic">SSH</li><li class="topic">cPanel</li>
+            <li class="topic">Git</li><li class="topic">GitHub</li><li class="topic">VS Code</li><li class="topic">XAMPP</li>
+            <li class="topic">Laravel Boost / MCP</li><li class="topic">Claude Code</li><li class="topic">Cisco Packet Tracer</li><li class="topic">Windows</li>
+            <li class="topic">OOP</li><li class="topic">DSA</li><li class="topic">MVC</li><li class="topic">RESTful design</li>
+            <li class="topic">Database design</li><li class="topic">Operating Systems</li><li class="topic">Computer Networks</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section — Rooftop Control Panel -->
-    <section id="contact" class="section contact-section control-panel-theme">
-        <div class="container">
-            <h2 class="section-title">05_Control_Panel</h2>
-            <div class="control-panel">
-                <div class="panel-header">
-                    <span class="panel-title">SYSTEM_COMMUNICATION_TERMINAL</span>
-                    <div class="panel-controls">
-                        <span class="ctrl"></span>
-                        <span class="ctrl"></span>
-                        <span class="ctrl"></span>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mvgenogy" method="POST">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">ID_INPUT:</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">SIGNAL_ADDRESS:</label>
-                            <input type="email" id="email" name="email" placeholder="email@address.net" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">TRANSMISSION_DATA:</label>
-                        <textarea id="message" name="message" placeholder="// Begin typing your signal here..."
-                            required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn terminal-btn">
-                        <span class="btn-prefix">></span> EXECUTE_DEPLOY_REQUEST
-                    </button>
-                </form>
-            </div>
+    <!-- ======================= Contact ======================= -->
+    <section class="section contact" id="contact" aria-labelledby="contact-h">
+      <div class="container contact__grid">
+        <div class="contact__intro">
+          <p class="eyebrow mono" data-anim="rtl"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg> git push origin hire-me</p>
+          <h2 class="section__title" id="contact-h" data-anim="rtl" data-delay="0.05">Let's build something that ships.</h2>
+          <p class="section__sub" data-anim="rtl" data-delay="0.1">Open to full-time roles and freelance work — Laravel, React/Next.js, integrations or automation. I usually reply within a day.</p>
+          <ul class="contact__list" data-anim="rtl" data-stagger="0.1">
+            <li>
+              <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+              <a href="mailto:anasatta048@gmail.com">anasatta048@gmail.com</a>
+              <button class="btn btn-sm" type="button" data-copy="anasatta048@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>Copy</button>
+            </li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+923322665959">03322665959</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Gujranwala, Pakistan · remote-friendly</li>
+            <li class="contact__socials">
+              <a class="btn" href="https://github.com/anasatta048" target="_blank" rel="noopener noreferrer" data-magnetic><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+              <a class="btn" href="https://www.linkedin.com/in/anas-atta-036773279" target="_blank" rel="noopener noreferrer" data-magnetic><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
+              <a class="btn" href="assets/Anas_Atta_Resume.pdf" download><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Resume</a>
+            </li>
+          </ul>
         </div>
+
+        <!-- Terminal form. Set data-endpoint to your Formspree URL to POST; empty = mailto fallback -->
+        <div class="terminal" data-anim="rtl" data-delay="0.1">
+          <div class="terminal__head">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="mono t-muted">contact.sh — bash</span>
+          </div>
+          <form class="terminal__body mono" id="contact-form" novalidate data-endpoint="" action="mailto:anasatta048@gmail.com" method="post">
+            <p class="t-muted"># Fill in the prompts and hit enter. Your mail client opens if no endpoint is set.</p>
+            <div class="field">
+              <label for="cf-name"><span class="t-green">?</span> name<span class="t-muted">:</span></label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" aria-describedby="cf-name-err" />
+              <p class="field__err" id="cf-name-err" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="cf-email"><span class="t-green">?</span> email<span class="t-muted">:</span></label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="120" aria-describedby="cf-email-err" />
+              <p class="field__err" id="cf-email-err" aria-live="polite"></p>
+            </div>
+            <div class="field field--area">
+              <label for="cf-msg"><span class="t-green">?</span> message<span class="t-muted">:</span></label>
+              <textarea id="cf-msg" name="message" rows="4" required minlength="10" maxlength="2000" placeholder="// Begin typing your signal here..." aria-describedby="cf-msg-err"></textarea>
+              <p class="field__err" id="cf-msg-err" aria-live="polite"></p>
+            </div>
+            <!-- honeypot -->
+            <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="terminal__submit">
+              <button class="btn btn-primary" type="submit" data-magnetic><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg>./send --to anas</button>
+              <span class="t-muted">or press <kbd>Ctrl</kbd> + <kbd>Enter</kbd></span>
+            </div>
+            <div class="terminal__out" id="contact-out" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-info">
-                <p>&copy; 2025 Anas Atta // ARCHITECT_STATUS: ONLINE</p>
-                <div id="secret-trigger" style="opacity: 0.1; cursor: pointer;">π</div>
-            </div>
-            <div class="footer-construction-log">
-                <span>SITE_INTEGRITY: 100%</span>
-                <span>COFFEE_RESERVE: LOW</span>
-            </div>
-        </div>
-    </footer>
-
-    <div id="secret-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>SECURE_NODE_ACCESS_GRANTED 😎</h2>
-            <p>You found the developer backroom. Here's a 🍪.</p>
-        </div>
+  <!-- ======================= Footer ======================= -->
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <svg class="footer__logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-logo"/></svg>
+        <span>© <span id="year">2026</span> Anas Atta</span>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer__links">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#repositories">Repositories</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="assets/Anas_Atta_Resume.pdf" download>Resume</a></li>
+          <li><a href="https://github.com/anasatta048" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/anas-atta-036773279" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </nav>
+      <p class="footer__fine mono t-muted">SITE_INTEGRITY: 100% · COFFEE_RESERVE: LOW · press <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>K</kbd> · try typing <code>git push</code></p>
     </div>
+  </footer>
 
-    <!-- System Messages HUD -->
-    <div id="system-hud">
-        <div class="hud-item" id="hud-status">STATUS: BROWSING_FOUNDATION</div>
-        <div class="hud-item" id="hud-msg">COMPILING_PERSONALITY...</div>
+  <!-- ======================= Overlays ======================= -->
+  <!-- Project drawer -->
+  <div class="drawer" id="drawer" hidden>
+    <div class="drawer__backdrop" data-close></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabindex="-1">
+      <div class="drawer__content" id="drawer-content"></div>
     </div>
+  </div>
 
-    <script src="main.js"></script>
+  <!-- Command palette -->
+  <div class="palette" id="palette" hidden>
+    <div class="palette__backdrop" data-close></div>
+    <div class="palette__panel" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="palette__input">
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <label class="sr-only" for="palette-input">Type a command</label>
+        <input id="palette-input" type="text" placeholder="Jump to a section, open a project, run a command…" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="palette-list" />
+        <kbd>Esc</kbd>
+      </div>
+      <ul class="palette__list" id="palette-list" role="listbox"></ul>
+      <div class="palette__foot mono t-muted"><span><kbd>↑</kbd><kbd>↓</kbd> navigate</span><span><kbd>↵</kbd> select</span><span><kbd>Esc</kbd> close</span></div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toasts" aria-live="polite" aria-atomic="false"></div>
+  <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"><span class="cursor__label"></span></span></div>
+
+  <noscript><style>.preloader{display:none}[data-anim],[data-hero]{opacity:1!important}</style></noscript>
+
+  <!-- Libraries (CDN, deferred) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- App -->
+  <script defer src="js/data.js"></script>
+  <script defer src="js/screens.js"></script>
+  <script defer src="js/three-hero.js"></script>
+  <script defer src="js/main.js"></script>
 </body>
-
 </html>
