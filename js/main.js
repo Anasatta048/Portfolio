@@ -30,7 +30,7 @@
     rtl: { x: 120, duration: 0.9, ease: "power3.out", start: "top 85%", stagger: 0.12 },
     rtlMobile: { x: 44, duration: 0.7 }, // lighter on phones
     heroChars: { x: 90, rotateY: -55, duration: 1, stagger: 0.035, ease: "power4.out" },
-    preloaderMs: 1100, // fake "clone" duration
+    preloaderMs: 650, // fake "clone" duration (first visit per session only)
     screenScrollSpeed: 260, // px / second for hover auto-scroll of screenshots
     screenReturn: 0.9, // seconds to glide back to the top on mouse leave
     tiltMax: 7, // degrees
@@ -340,7 +340,13 @@
   /** Ordered list of image URLs to try: local → screenshot service */
   function screenSources(p, size) {
     const list = [];
-    if (LOCAL_SCREENS[p.slug]) list.push(LOCAL_SCREENS[p.slug]);
+    const local = LOCAL_SCREENS[p.slug];
+    if (local) {
+      // cards + showcase use the light 800px "-sm" variant (≈3× fewer pixels to
+      // decode); the drawer gets the full 1440px capture.
+      if (size < 1440) list.push(local.replace(/(\.\w+)$/, "-sm$1"));
+      list.push(local);
+    }
     if (p.url) list.push(CONFIG.screenshotService(p.url, size));
     return list;
   }
@@ -457,6 +463,7 @@
       const dist = distance();
       if (!dist) return;
       tween && tween.kill();
+      img.style.willChange = "transform";
       const cur = gsap.getProperty(img, "y");
       tween = gsap.to(img, { y: -dist, duration: (dist + cur) / CONFIG.screenScrollSpeed, ease: "none" });
       playCursor();
@@ -464,7 +471,7 @@
 
     function scrollBack() {
       tween && tween.kill();
-      tween = gsap.to(img, { y: 0, duration: CONFIG.screenReturn, ease: "power3.out" });
+      tween = gsap.to(img, { y: 0, duration: CONFIG.screenReturn, ease: "power3.out", onComplete: () => (img.style.willChange = "") });
       stopCursor();
     }
 
@@ -718,7 +725,11 @@
   function typeOnce(el) {
     if (!el || reduced() || !hasST) return;
     const text = Array.from(el.dataset.type || el.textContent);
-    el.setAttribute("aria-label", text.join(""));
+    const sr = document.createElement("span");
+    sr.className = "sr-only";
+    sr.textContent = text.join("");
+    el.before(sr);
+    el.setAttribute("aria-hidden", "true");
     el.textContent = "";
     ScrollTrigger.create({
       trigger: el,
@@ -796,20 +807,25 @@
     }
   }
 
+  let sectionEls = null;
   const onScroll = rafThrottle(() => {
+    // --- reads (layout) ---
+    if (!sectionEls) sectionEls = SECTION_TABS.map(([id, tab]) => [document.getElementById(id), tab]).filter(([el]) => el);
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - innerHeight;
-    if (progressEl) progressEl.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-    headerEl && headerEl.classList.toggle("is-scrolled", y > 24);
-
-    // active section = last one whose top crossed 35% of the viewport
     const line = innerHeight * 0.35;
     let current = "overview";
-    SECTION_TABS.forEach(([id, tab]) => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top - line <= 0) current = tab;
+    // active section = last one whose top crossed 35% of the viewport
+    sectionEls.forEach(([el, tab]) => {
+      if (el.getBoundingClientRect().top - line <= 0) current = tab;
     });
     if (y >= max - 4) current = "contact";
+    // --- writes ---
+    if (progressEl) progressEl.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    if (headerEl) {
+      const scrolled = y > 24;
+      if (scrolled !== headerEl.classList.contains("is-scrolled")) headerEl.classList.toggle("is-scrolled", scrolled);
+    }
     setActiveTab(current);
   });
 
@@ -929,15 +945,18 @@
   }
 
   function initSkillBars() {
-    $$(".skill").forEach((el) => {
-      const v = +el.dataset.value;
-      const bar = $(".skill__bar i", el);
-      const num = $(".skill__val span", el);
-      const obj = { v: 0 };
-      gsap
-        .timeline({ scrollTrigger: { trigger: el, start: "top 92%", once: true } })
-        .fromTo(bar, { scaleX: 0 }, { scaleX: v / 100, duration: 1.4, ease: "power3.out" }, 0)
-        .to(obj, { v, duration: 1.4, ease: "power3.out", onUpdate: () => (num.textContent = Math.round(obj.v)) }, 0);
+    $$(".skill-list").forEach((list) => {
+      const tl = gsap.timeline({ scrollTrigger: { trigger: list, start: "top 90%", once: true } });
+      $$(".skill", list).forEach((el, i) => {
+        const v = +el.dataset.value;
+        const num = $(".skill__val span", el);
+        const obj = { v: 0 };
+        tl.fromTo($(".skill__bar i", el), { scaleX: 0 }, { scaleX: v / 100, duration: 1.4, ease: "power3.out" }, i * 0.08).to(
+          obj,
+          { v, duration: 1.4, ease: "power3.out", onUpdate: () => (num.textContent = Math.round(obj.v)) },
+          i * 0.08
+        );
+      });
     });
     const lb = $("#langbar");
     if (lb) {
@@ -1160,7 +1179,12 @@
     return new Promise((resolve) => {
       const pre = $("#preloader");
       if (!pre) return resolve();
-      if (!hasGSAP || reduced()) {
+      let seen = false;
+      try {
+        seen = sessionStorage.getItem("preloaded") === "1";
+        sessionStorage.setItem("preloaded", "1");
+      } catch (e) {}
+      if (!hasGSAP || reduced() || seen) {
         pre.remove();
         return resolve();
       }

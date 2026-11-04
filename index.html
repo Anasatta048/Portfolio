@@ -160,15 +160,16 @@
   <!-- ======================= Header ======================= -->
   <header class="site-header" id="site-header">
     <div class="header__bar container">
-      <a class="header__brand" href="#top" aria-label="Anas Atta — back to top">
+      <a class="header__brand" href="#top">
         <svg class="header__logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-logo"/></svg>
         <span class="header__crumb mono"><span class="t-muted">anasatta048</span><span class="t-muted">/</span><strong>portfolio</strong></span>
+        <span class="sr-only">Anas Atta — back to top</span>
       </a>
 
       <div class="header__search" role="search">
         <label class="sr-only" for="site-search">Search sections and projects</label>
         <svg class="icon header__search-icon" aria-hidden="true"><use href="#i-search"/></svg>
-        <input id="site-search" type="search" autocomplete="off" placeholder="Type / to search" aria-controls="search-results" aria-expanded="false" aria-autocomplete="list" />
+        <input id="site-search" type="search" role="combobox" autocomplete="off" placeholder="Type / to search" aria-controls="search-results" aria-expanded="false" aria-autocomplete="list" />
         <kbd class="header__kbd" aria-hidden="true">/</kbd>
         <ul class="search-results" id="search-results" role="listbox" hidden></ul>
       </div>
@@ -763,7 +764,6 @@
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <!-- App -->
   <script defer src="js/data.js"></script>

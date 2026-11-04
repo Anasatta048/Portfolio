@@ -61,6 +61,8 @@ node capture.js talk-to-trader gmb-manager
 
 The first command captures every project; the second captures only the slugs you name. The script opens each URL at **1440px** width and scrolls the page so lazy content loads. It saves a full-page shot to `assets/screens/<slug>.webp`, or `.png` if `sharp` isn't installed, and regenerates `js/screens.js`.
 
+Each capture also writes a light **800px `<slug>-sm.webp`**. The repo cards and the showcase use the `-sm` file, so the browser decodes about 3× fewer pixels, and the project drawer uses the full 1440px image. If a `-sm` file is missing, the site falls back to the full image.
+
 Optional per-project fields in `tools/projects.json`:
 
 - `"capture": "https://staging…/page"` takes the screenshot from a different page, while the site keeps showing and linking the public `url`. Florenza uses this.

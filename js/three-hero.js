@@ -35,11 +35,31 @@
   if (!canvas || !hero) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduceMotion || !window.THREE || !hasWebGL()) {
+  if (reduceMotion || !hasWebGL()) {
     document.documentElement.classList.add("no-webgl");
     return;
   }
 
+  /* Perf: Three.js (~600KB) is NOT in the critical path. It is injected after
+     the page has loaded and the main thread is idle; until then the CSS
+     gradient (.hero__fallback) is what you see. */
+  const THREE_SRC = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
+  const whenIdle = (fn) => (window.requestIdleCallback ? requestIdleCallback(fn, { timeout: 2000 }) : setTimeout(fn, 300));
+  const boot = () =>
+    whenIdle(() => {
+      if (window.THREE) return init();
+      const tag = document.createElement("script");
+      tag.src = THREE_SRC;
+      tag.async = true;
+      tag.onload = init;
+      tag.onerror = () => document.documentElement.classList.add("no-webgl");
+      document.head.appendChild(tag);
+    });
+  if (document.readyState === "complete") boot();
+  else window.addEventListener("load", boot, { once: true });
+
+  function init() {
+  if (!window.THREE) return;
   const THREE = window.THREE;
   const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
@@ -51,7 +71,7 @@
     document.documentElement.classList.add("no-webgl");
     return;
   }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2));
   renderer.setClearColor(0x000000, 0);
 
   const scene = new THREE.Scene();
@@ -413,6 +433,7 @@
   resize();
   start();
   requestAnimationFrame(() => canvas.classList.add("is-ready"));
+  } // end init()
 
   /* ---------------------------------------------------------- helpers */
   function hasWebGL() {

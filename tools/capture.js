@@ -161,6 +161,9 @@ async function dismissCookies(page) {
       if (sharp) {
         const webp = path.join(OUT, `${p.slug}.webp`);
         await sharp(png).webp({ quality: 78 }).toFile(webp);
+        // light 800px variant used by cards + showcase (the site falls back to
+        // the full image if this file is missing)
+        await sharp(png).resize({ width: 800 }).webp({ quality: 72 }).toFile(path.join(OUT, `${p.slug}-sm.webp`));
         fs.unlinkSync(png);
         rel = `assets/screens/${p.slug}.webp`;
       }
