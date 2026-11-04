@@ -8,5 +8,6 @@
   {"slug": "dreamelect-logistics", "url": "https://dreamelect.azarkdigitalsolutions.com/", "wait": 7000},
   {"slug": "siddique-sons", "url": "https://ssdistributors.azarkdigitalsolutions.com/"},
   {"slug": "florenza", "url": "https://florenzaluxuryflower.com/", "capture": "https://staging-florenza.azarkdigitalsolutions.com/mall-of-grw", "wait": 5000},
+  {"slug": "edskill", "url": "https://edskill.co.uk/"},
   {"slug": "bcr-publishing", "url": "https://bcrpub.com/", "forceReveal": true}
 ]

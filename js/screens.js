@@ -11,5 +11,6 @@ window.LOCAL_SCREENS = {
   "dreamelect-logistics": "assets/screens/dreamelect-logistics.webp",
   "siddique-sons": "assets/screens/siddique-sons.webp",
   "florenza": "assets/screens/florenza.webp",
-  "bcr-publishing": "assets/screens/bcr-publishing.webp"
+  "bcr-publishing": "assets/screens/bcr-publishing.webp",
+  "edskill": "assets/screens/edskill.webp"
 };
